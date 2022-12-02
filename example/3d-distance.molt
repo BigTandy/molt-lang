@@ -1,0 +1,34 @@
+
+# A 3-D implementation of the Pythagorean theorem
+
+let X = 1
+let Y = 2
+let Z = 3
+
+
+# Define the point (1,2,3) as P_A
+def P_A(n) = {
+    n = X : 1
+    n = Y : 2
+    n = Z : 3
+}
+
+# Define the point (542,6,0) as P_B
+def P_B(n) = {
+    n = X : 1
+    n = Y : 2
+    n = Z : 3
+}
+
+
+def distance(a,b) = sqrt(
+    sqrt(  # Flat distance cross-distance
+        (a(X) - b(X))^2 +
+        (a(Y) - b(Y))^2
+    ) +
+    (a(Z) - b(Z))^2 # ... with z-dim
+)
+
+
+eval distance(P_A, P_B)
+
