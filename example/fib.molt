@@ -1,0 +1,7 @@
+def fib(n, a, b) = {
+    n = 0: a
+    n = 1: b
+           fib(n - 1, b, a + b)
+}
+
+eval fib(34)
