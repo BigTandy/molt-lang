@@ -13,6 +13,7 @@ def parse_condition(tokens: TokenStream):
         ), """
         While attempting to parse a condition, the parser tried to find a conditional operator ("=", ">", ">=", etc), but found a
         '{got_content}' instead. This was parsed as a {got}.
+        Please make sure to include a condition (e.g. `x = 3` or `x < 0`) rather than an expression (e.g. `x` or `x+10`)
     """)
     
     right = parse_expression(tokens)
