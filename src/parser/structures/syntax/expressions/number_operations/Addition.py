@@ -18,4 +18,4 @@ class Addition(Expression):
                 EvaluationResultType.NUMBER, left_res.value + right_res.value
             )
         
-        raise Exception("couldn't add together non-numbers!")
+        raise Exception(f"Could not add {left_res.type} and {right_res.type}")
