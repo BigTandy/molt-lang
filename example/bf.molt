@@ -38,11 +38,6 @@ def state_with_value(S, s_i, vP) = {
     }
 }
 
-def _(i) = {
-        i = s_i : vP
-        S(i)
-    }
-
 def mapping(n) = 0
 
 def program(i) = {
