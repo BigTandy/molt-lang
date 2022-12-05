@@ -1,2 +1,3 @@
 class Token():
-    pass
+    def __init__(self, type: str, content: str) -> None:
+        pass
