@@ -32,6 +32,12 @@ def lexer(content: str) -> list[Token]:
         elif content.startswith('*', i):
             yield Token ('multiply', '*')
             i += len('*')
+        elif content.startswith('!=', i):
+            yield Token ('neq', '!=')
+            i += len('!=')
+        elif content.startswith('/=', i):
+            yield Token ('neq', '/=')
+            i += len('/=')
         elif content.startswith('/', i):
             yield Token ('divide', '/')
             i += len('/')
@@ -108,20 +114,24 @@ def lexer(content: str) -> list[Token]:
             yield Token ('setbuilder', '|')
             i += len('|')
         elif content.startswith('let', i):
-            yield Token ('assign', 'let')
+            yield Token ('let', 'let')
             i += len('let')
         elif content.startswith('eval', i):
-            yield Token ('evaluate', 'eval')
+            yield Token ('eval', 'eval')
             i += len('eval')
-        elif content.startswith('sol', i):
-            yield Token ('solvefunc', 'solve')
+        elif content.startswith('solve', i):
+            yield Token ('solve', 'solve')
             i += len('solve')
         elif content.startswith('def', i):
-            yield Token ('define', 'def')
+            yield Token ('def', 'def')
             i += len('def')
         elif content.startswith('graph', i):
-            yield Token ('graphfunc', 'graph')
+            yield Token ('graph', 'graph')
             i += len('graph')
-
+        elif content.startswith('in', i):
+            yield Token ('in', 'in')
+            i += len('in')
+        
+        
 
 
