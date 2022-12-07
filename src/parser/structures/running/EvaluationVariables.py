@@ -2,7 +2,7 @@ from parser.structures.running.EvaluationResult import EvaluationResult, Evaluat
 
 
 class EvaluationVariables:
-    def __init__(self, vars) -> None:
+    def __init__(self, vars = dict()) -> None:
         self.vars = vars
         
     def get(self, var: str) -> EvaluationResult:

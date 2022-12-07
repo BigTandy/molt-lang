@@ -1,10 +1,10 @@
-from typing import Iterable
+from typing import Iterator
 from parser.structures.Token import Token
 
 
 class TokenStream:
-    def __init__(self, tokens: Iterable[Token]):
-        self.tokens = tokens.__iter__()
+    def __init__(self, tokens: Iterator[Token]):
+        self.tokens = tokens
         self.top_token = None
     
     def peek(self) -> Token:
