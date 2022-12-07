@@ -1,4 +1,4 @@
-from parser.parsing.parse_expression_or_condition import parse_expression
+from parser.parsing.parse_expression import parse_expression
 from parser.parsing.parse_utils import expect
 from parser.parsing.token_stream import TokenStream
 from parser.structures.syntax.conditions.Condition import Condition
