@@ -4,16 +4,6 @@ from parser.lexer import lexer
 from parser.parsing.parse_file import parse_file
 from parser.parsing.token_stream import TokenStream
 
-# look up how to do argv in python
-# take in the name of a file on the command line
-# - or, optionally take in a folder and search it for molt files
-#   - if you want to choose a special name for (nodejs = index.js, python = main.py) molt files to run then do that :)
-# read the file
-# throw the string into the lexer
-# put the result from that into the token stream
-# use parse_file() to get a structure representing the file
-# call .run() on that object
-
 # If no path is specified, use current working directory
 if len(sys.argv) < 3:
     fpath = os.getcwd()
@@ -46,5 +36,6 @@ elif os.path.isdir(fpath):
         run_file(os.path.join(fpath, 'main.molt'))
     else:
         raise Exception(f"{fpath} is a directory and no file 'main.molt' found")
+# Raise exception if specified path is not a file or directory
 else:
     raise Exception(f'{fpath} is not a valid file or directory')
