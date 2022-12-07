@@ -1,0 +1,39 @@
+{
+  "name": "molt-language-support",
+  "displayName": "Molt Language Support",
+  "description": "Language support for the Molt mathematical language",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.73.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "molt",
+        "aliases": [
+          "Molt",
+          "molt"
+        ],
+        "extensions": [
+          ".molt",
+          ".mlt"
+        ],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "dark": "./icons/logo-2.svg",
+          "light": "./icons/logo-2.svg"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "molt",
+        "scopeName": "source.molt",
+        "path": "./syntaxes/molt.tmLanguage.json"
+      }
+    ]
+  }
+}
