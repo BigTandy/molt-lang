@@ -1,3 +1,7 @@
+import re
+variable_regex = re.compile('^[a-zA-Z_]+')
+number_regex = re.compile('^[0-9._]+')
+
 from structures.Token import Token
 def lexer(content: str) -> list[Token]:
      i = 0
@@ -131,7 +135,25 @@ def lexer(content: str) -> list[Token]:
         elif content.startswith('in', i):
             yield Token ('in', 'in')
             i += len('in')
-        
-        
-
-
+        elif variable_regex.match(content[i:]):
+            yield Token('var', variable_regex.match(content[i:]).group(0))
+            i += len(variable_regex.match(content[i:]).group(0))
+        elif number_regex.match(content[i:]):
+            yield Token('num', number_regex.match(content[i:]).group(0))
+            i += len(number_regex.match(content[i:]).group(0))
+        elif content.startswith('#', i):
+            i = content.index('\n', i)
+            continue 
+        elif content.startswith(' ', i):
+            i += 1
+            continue 
+        elif content.startswith('\n', i):
+            i += 1
+            continue 
+        elif content.startswith('\t', i):
+            i += 1
+            continue 
+        elif content.startswith('\r', i):
+            i += 1
+            continue 
+            
