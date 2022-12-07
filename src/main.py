@@ -25,6 +25,7 @@ if not os.path.exists(fpath):
     raise Exception(f'Specified path {fpath} does not exist')
 
 def run_file(path: str):
+    """Open the file and run it"""
     with open(path, mode='r') as file:
         source_code = file.read()
 
