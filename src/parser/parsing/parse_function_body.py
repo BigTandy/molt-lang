@@ -16,8 +16,6 @@
 # `f(x) = { y | y }` should be a braced expression. wacky, huh?
 
 from ast import Expression
-from lib2to3.pgen2 import token
-from msilib.schema import Condition
 from typing import List, Tuple
 from parser.parsing.parse_condition import parse_condition, parse_condition_with_left
 from parser.parsing.parse_expression import parse_expression
