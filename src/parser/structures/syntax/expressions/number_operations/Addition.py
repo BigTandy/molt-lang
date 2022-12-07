@@ -23,5 +23,6 @@ class Addition(Expression):
             return EvaluationResult(
                 EvaluationResultType.NUMBER, left_res.value + right_res.value
             )
+                
         # Raise exception if left_res or right_res are not numbers
         raise Exception(f"Could not add {left_res.type} and {right_res.type}")
