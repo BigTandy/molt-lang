@@ -1,7 +1,8 @@
-# This is one of the most complex sub-parsers because it needs to discriminate between 3 cases:
+# This is one of the most complex sub-parsers because it needs to discriminate between 4 cases:
 # - Set builder notation: `f(x) = { y | y = x }` should be 'f of x is the set of all y where y is less than x'
 # - Braced expressions: `f(x) = { x | g(x) }` should be 'f of x is the union of x and (g of x)'
 # - Piecewise: `f(x) = { x = 2: 2, x = 3: 9 }` should be 'f of x is 2 if x is 2 and is 9 if x is 3'
+# - Finite set: `f(y) = { y | y, y }` should be a set containing `y | y` and `y`.
 # - (there are also unbraced expressions, but those are so easy that we don't need to care about them.)
 #
 # The third one is relatively easy; we need to crack `parse_condition` open 
@@ -9,11 +10,16 @@
 # to discriminate between: the only difference is that the former uses
 # conditions and the latter uses expressions.
 # It's *doable*, but it's hard to understand for everyone.
+#
+# The even harder part is that it's literally impossible to 
+# discriminate between a braced expression and a single-element finite set.
+# so we have to add an optional argument to specify the context-- which structure we *actually* want that lexical form
+# to yield.
 # 
 # The main tricky part is:
 # `f(x) = { y | y = x }` should be a set
 # `f(x) = { y | y = x: 2 }` should be a piecewise (albeit a WEIRD one-- here's some more explanatory parens: `f(x) = { (y | y) = x: 2 }`)
-# `f(x) = { y | y }` should be a braced expression. wacky, huh?
+# `f(x) = { y | y }` should be a braced expression. or maybe a single-element set. wacky, huh?
 
 from ast import Expression
 from typing import List, Tuple
@@ -54,6 +60,8 @@ def parse_function_body_after_curly(tokens: TokenStream, parse_singleton_set_as_
             return first_expr
         else:
             return FiniteSet([first_expr])
+            
+    # if the next token is a comma, we're in a finite set
         
     # if it WASN'T a bracketed expression, then we *had* to have parsed a set union. 
     # complain if not.
