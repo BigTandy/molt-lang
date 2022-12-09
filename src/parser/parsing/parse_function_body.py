@@ -52,7 +52,7 @@ def parse_function_body_after_curly(tokens: TokenStream, parse_singleton_set_as_
     # consume an expression first. All 3 cases start with an expression (LEXICALLY), so that's good.
     # we might need to crack open the expression later, but uhhh yikes we can get to that when we get to it.
     first_expr = parse_expression(tokens)
-    # if the next token is a close bracket, wonderful! We've parsed a bracketed expression.
+    # if the next token is a close bracket, wonderful! We've parsed a bracketed expression or a singleton set
     if(tokens.peek().type == "curly_cbracket"):
         tokens.pop()
         
@@ -62,6 +62,8 @@ def parse_function_body_after_curly(tokens: TokenStream, parse_singleton_set_as_
             return FiniteSet([first_expr])
             
     # if the next token is a comma, we're in a finite set
+    if tokens.peek().type == "comma":
+        return parse_rest_of_finite_set(tokens, first_expr)
         
     # if it WASN'T a bracketed expression, then we *had* to have parsed a set union. 
     # complain if not.
@@ -94,6 +96,21 @@ def parse_function_body_after_curly(tokens: TokenStream, parse_singleton_set_as_
     expect(tokens, "curly_cbracket", "Couldn't find a matching close-bracket.")
     
     return result
+    
+def parse_rest_of_finite_set(tokens: TokenStream, first: Expression) -> Expression:
+    # we get a comma as the next token. We should keep going until we find a curly end.
+    
+    # pop the comma, which we know by precondition to exist
+    tokens.pop()
+    
+    expressions = [first]
+    
+    while tokens.peek().type != 'curly_cbracket':
+        expressions.append(parse_expression(tokens))
+        if tokens.peek().type == 'comma':
+            tokens.pop()
+    
+    return FiniteSet(expressions)
     
 def parse_the_rest_of_piecewise(tokens: TokenStream, cond: Condition) -> PiecewiseNotation:
     # the next token MUST (by precondition) be a colon. just get rid of it :)
