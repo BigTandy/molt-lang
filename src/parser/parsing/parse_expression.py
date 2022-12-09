@@ -1,3 +1,4 @@
+from parser.parsing.parse_function_body import parse_function_body_after_curly
 from parser.parsing.parse_utils import expect
 from parser.parsing.token_stream import TokenStream
 from parser.structures.syntax.expressions.Expression import Expression
@@ -46,6 +47,9 @@ def parseBracketContent(tokens, token):
     expect(tokens, 'cbracket')
     return operand
 
+def parseSet(tokens, token):
+    return parse_function_body_after_curly(tokens, parse_singleton_set_as_expression=False)
+
 def register(Token, parselet):
     prefixParselets.put(Token, parselet)
 
@@ -54,6 +58,7 @@ register('minus', parseNegation)
 register('var', parseVariable)
 register('num', parseNumber)
 register('obracket', parseBracketContent)
+register('ocurlybracket', parseSet)
 
 
 def parseAddition(tokens, token, left):

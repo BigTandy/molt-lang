@@ -25,6 +25,7 @@ from parser.structures.syntax.conditions.Condition import Condition
 from parser.structures.syntax.conditions.Equation import Equation
 from parser.structures.syntax.expressions.PiecewiseNotation import PiecewiseNotation
 from parser.structures.syntax.expressions.base_literals.Variable import Variable
+from parser.structures.syntax.expressions.compound_literals.FiniteSet import FiniteSet
 from parser.structures.syntax.expressions.compound_literals.InfiniteSet import InfiniteSet
 from parser.structures.syntax.expressions.set_operations.Union import Union
 
@@ -38,13 +39,21 @@ def parse_function_body(tokens: TokenStream) -> Expression:
     # we know it's a curly bc of the above `if` statement
     tokens.pop()
     
+    # segment out this part so that set expressions can use the latter.
+    return parse_function_body_after_curly(tokens)
+    
+def parse_function_body_after_curly(tokens: TokenStream, parse_singleton_set_as_expression = True) -> Expression:
     # consume an expression first. All 3 cases start with an expression (LEXICALLY), so that's good.
     # we might need to crack open the expression later, but uhhh yikes we can get to that when we get to it.
     first_expr = parse_expression(tokens)
     # if the next token is a close bracket, wonderful! We've parsed a bracketed expression.
     if(tokens.peek().type == "curly_cbracket"):
         tokens.pop()
-        return first_expr
+        
+        if parse_singleton_set_as_expression:
+            return first_expr
+        else:
+            return FiniteSet([first_expr])
         
     # if it WASN'T a bracketed expression, then we *had* to have parsed a set union. 
     # complain if not.
