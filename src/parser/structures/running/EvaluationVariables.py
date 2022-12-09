@@ -2,8 +2,8 @@ from parser.structures.running.EvaluationResult import EvaluationResult, Evaluat
 
 
 class EvaluationVariables:
-    def __init__(self) -> None:
-        self.vars = dict()
+    def __init__(self, vars = dict()) -> None:
+        self.vars = vars
         
     def get(self, var: str) -> EvaluationResult:
         if var in self.vars:
@@ -13,6 +13,9 @@ class EvaluationVariables:
         
     def set(self, var: str, val: EvaluationResult):
         self.vars[var] = val
+        
+    def copy(self):
+        return EvaluationVariables(self.vars.copy())
         
     def copy_without_specific(self, var: str):
         clone_to_remove_specified_without_affecting_self = self.vars.copy()

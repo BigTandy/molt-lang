@@ -8,3 +8,6 @@ class Expression:
     
     def evaluate(self, vars: EvaluationVariables) -> EvaluationResult:
         pass
+        
+    def contains_variable(self, var: str) -> bool:
+        pass
