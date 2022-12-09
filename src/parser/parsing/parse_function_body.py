@@ -6,7 +6,7 @@
 #
 # The third one is relatively easy; we need to crack `parse_condition` open 
 # a little bit, but it's doable. The first two are FAR harder
-# to discriminate between: the only difference is taht the former uses
+# to discriminate between: the only difference is that the former uses
 # conditions and the latter uses expressions.
 # It's *doable*, but it's hard to understand for everyone.
 # 
