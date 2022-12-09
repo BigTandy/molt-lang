@@ -3,7 +3,7 @@ from parser.structures.running.EvaluationVariables import EvaluationVariables
 from parser.structures.syntax.expressions.Expression import Expression
 
 
-class ModuloOperation(Expression):
+class Modulo(Expression):
     def __init__(self, left: Expression, right: Expression) -> None:
         self.left = left
         self.right = right

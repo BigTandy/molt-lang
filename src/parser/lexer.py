@@ -4,8 +4,8 @@ number_regex = re.compile('^[0-9._]+')
 
 from structures.Token import Token
 def lexer(content: str) -> list[Token]:
-     i = 0
-     while i < len(content):
+    i = 0
+    while i < len(content):
         if content.startswith(',', i):
             yield Token('comma', ',')
             i += len(',')
@@ -88,16 +88,16 @@ def lexer(content: str) -> list[Token]:
             yield Token ('less', '<')
             i += len('<')
         elif content.startswith('&&', i):
-            yield Token ('intersection', '&&')
+            yield Token ('intersect', '&&')
             i += len('&&')
         elif content.startswith('&', i):
-            yield Token ('intersection', '&')
+            yield Token ('intersect', '&')
             i += len('&')
         elif content.startswith('/\\', i):
-            yield Token ('intersection', '/\\')
+            yield Token ('intersect', '/\\')
             i += len('/\\')
         elif content.startswith('∩', i):
-            yield Token ('intersection', '∩')
+            yield Token ('intersect', '∩')
             i += len('∩')
         elif content.startswith('||', i):
             yield Token ('union', '||')
@@ -156,4 +156,5 @@ def lexer(content: str) -> list[Token]:
         elif content.startswith('\r', i):
             i += 1
             continue 
+    yield Token('EOF', '')
             
