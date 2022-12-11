@@ -13,12 +13,16 @@ class Application(Expression):
         func = self.function.evaluate(vars)
         
         if(func.type != EvaluationResultType.FUNCTION):
-            raise("Attempted to evaluate function application upon a non-function value.")
+            raise(
+                Exception("Attempted to evaluate function application upon a non-function value.")
+            )
             
         function_expression, function_bound_vars = func.get_function_attributes()
         
         if len(self.arguments) != len(function_bound_vars):
-            raise(f"Attempted to evaluate a function which takes {len(function_bound_vars)} arguments, but found {len(self.arguments)} arguments.")
+            raise(
+                Exception(f"Attempted to evaluate a function which takes {len(function_bound_vars)} arguments, but found {len(self.arguments)} arguments.")
+            )
         
         evaluation_context = vars.copy()
         

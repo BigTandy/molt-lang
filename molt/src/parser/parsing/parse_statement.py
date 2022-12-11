@@ -5,19 +5,19 @@ from parser.parsing.token_stream import TokenStream
 from parser.structures.Token import Token
 from parser.structures.syntax.expressions.base_literals.Variable import Variable
 from parser.structures.syntax.expressions.function_operations.Composition import Composition
-from parser.structures.syntax.statements.EvalStatement import EvalStatement
-from parser.structures.syntax.statements.LetStatement import LetStatement
+from parser.structures.syntax.statements.molt_statements.EvalStatement import EvalStatement
+from parser.structures.syntax.statements.molt_statements.LetStatement import LetStatement
 
 def parse_statement(tokens: TokenStream):
     next_token = tokens.peek()
     
-    if next_token.name == "def":
+    if next_token.type == "def":
         return parse_def_statement(tokens)
-    elif next_token.name == "let":
+    elif next_token.type == "let":
         return parse_let_statement(tokens)
-    elif next_token.name == "solve":
+    elif next_token.type == "solve":
         return parse_solve_statement(tokens)
-    elif next_token.name == "eval":
+    elif next_token.type == "eval":
         return parse_eval_statement(tokens)
     else:
         return parse_eval_statement(tokens)
@@ -99,7 +99,7 @@ def parse_let_statement(tokens: TokenStream):
 
 def parse_eval_statement(tokens: TokenStream):
     # Get rid of the `eval` token, if it's there. An expression by its own is interpreted as an eval statement.
-    if(tokens.peek().name == "eval"):
+    if(tokens.peek().type == "eval"):
         tokens.pop()
         
     expr = parse_expression(tokens)

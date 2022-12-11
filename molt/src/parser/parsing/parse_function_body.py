@@ -64,18 +64,10 @@ def parse_function_body_after_curly(tokens: TokenStream, parse_singleton_set_as_
     # if the next token is a comma, we're in a finite set
     if tokens.peek().type == "comma":
         return parse_rest_of_finite_set(tokens, first_expr)
-        
-    # if it WASN'T a bracketed expression, then we *had* to have parsed a set union. 
-    # complain if not.
-    if(type(first_expr) != Union):
-        raise(Exception("""
-        Experienced an issue while parsing a function body: although this body is not a trivial expression, it's not a 
-        piecewise or a set-builder expression.
-        """))
     
-    # make a condition with the union expression. We still don't
+    # make a condition with the expression. We still don't
     # know if this is `x | x = y: 2` (piecewise) 
-    # or `x | x = y` (set-builder notation), so we use the whole union.
+    # or `x | x = y` (set-builder notation), so we use the whole expr.
     # We can (and will!) swap it around later.
     
     condition = parse_condition_with_left(tokens, first_expr)
@@ -93,6 +85,7 @@ def parse_function_body_after_curly(tokens: TokenStream, parse_singleton_set_as_
         raise Exception("""
             Couldn't determine whether this expression is set-builder or piecewise notation.
         """)
+    
     expect(tokens, "curly_cbracket", "Couldn't find a matching close-bracket.")
     
     return result
@@ -116,25 +109,37 @@ def parse_the_rest_of_piecewise(tokens: TokenStream, cond: Condition) -> Piecewi
     # the next token MUST (by precondition) be a colon. just get rid of it :)
     tokens.pop()
     
+    print("hi i am piecewise")
+    
     branches: List[Tuple[Condition,Expression]] = [(cond, parse_expression(tokens))]
     
     # ok ok. now. keep on going. it'll be a series of `condition colon expression`s, seperated by `comma`s.
     # the tricky part is the last could just be an `expression`, so you've gotta check for that
     
     while tokens.peek().type == "comma":
+        tokens.pop()
+        
         next_expr = parse_expression(tokens)
         if tokens.peek().type == "curly_cbracket":
             branches.append( (Condition.TRUE, next_expr) )
             break
+        elif tokens.peek().type == "comma":
+            raise Exception("The 'else' clause of piecewise notation must be the last item.")
         
         next_cond = parse_condition_with_left(tokens, next_expr)
         expect(tokens, "colon", "In piecewise notation, colons must seperate conditions from their values.")
         
         expr = parse_expression(tokens)
         
-        expect(tokens, "comma", "In piecewise notation, terms must be seperated by commas.")
-        
         branches.append( (next_cond, expr) )
+        
+    # if the next token isn't a close-curly, tell the user they might want to add a comma; this helps with 
+    # things like f(x) = { x == 2: 1
+    # x == 3: -x }
+    # where the user forgot a comma
+    
+    if tokens.peek().type != "curly_cbracket":
+        raise Exception("In piecewise notation, terms must be seperated by commas. You might be missing one.")
     
     return PiecewiseNotation(branches)
     
@@ -145,6 +150,13 @@ def parse_the_rest_of_set_builder(tokens: TokenStream, cond: Condition) -> Infin
     # or `,`, meaning that there are more conditions.
     
     # but first lol, crack open the condition and verify it's got a variable
+    
+    # if it WASN'T a bracketed expression, then we *had* to have parsed a set union.
+    # complain if not.
+    if (type(union) != Union):
+        raise (Exception("""
+        Experienced an issue while parsing a set-builder expression: needed a `|`, but didn't get one. Sad!
+        """))
     
     union: Union = cond.left
     

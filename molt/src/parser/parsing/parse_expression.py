@@ -1,3 +1,4 @@
+from parser.structures.syntax.expressions.base_literals.Number import Number
 from parser.parsing.parse_function_body import parse_function_body_after_curly
 from parser.parsing.parse_utils import expect
 from parser.parsing.token_stream import TokenStream
@@ -28,7 +29,7 @@ infixParselets = dict()
 
 def parseNumber(tokens, token):
     content = token.content
-    return Variable(float(content))
+    return Number(float(content))
 
 def parseVariable(tokens, token):
     content = token.content
@@ -87,10 +88,10 @@ def parseIntersection(tokens, token, left):
 
 def parseApplication(tokens, token, left):
     argument = []
-    while token.peek().type != 'cbracket':
+    while tokens.peek().type != 'cbracket':
         argument.append(parse_expression(tokens))
-        if token.peek().type == 'comma':
-            token.pop()
+        if tokens.peek().type == 'comma':
+            tokens.pop()
     expect(tokens, 'cbracket')
     return Application(left, argument)
 
@@ -118,7 +119,7 @@ precedences = {
 }
 
 def get_precedence(tokens):
-    return precedences.get(tokens.peek(), 0)
+    return precedences.get(tokens.peek().type, 0)
 
 def parse_expression(tokens: TokenStream, precedence = 0) -> Expression:
     # bob nystrom <3
@@ -131,7 +132,7 @@ def parse_expression(tokens: TokenStream, precedence = 0) -> Expression:
 
     left = prefix(tokens, token)
 
-    while(precedence < get_precedence()):
+    while(precedence < get_precedence(tokens)):
         token = tokens.pop()
 
         infix = infixParselets.get(token.type, None)

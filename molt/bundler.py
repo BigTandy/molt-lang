@@ -3,14 +3,19 @@ import re
 import ast
 
 
-def bundle(dir):
+def bundle(dir, entry = "main.py"):
     src = ""
+    final = ""
     
     for file in python_files(dir):
         with open(file) as file_handle:
-            src += f"# {file}\n{decomplicate(file_handle.read())}\n\n"
+            section = f"# {file}\n{decomplicate(file_handle.read())}\n\n"
+            if file.endswith(entry):
+                final += section
+            else:
+                src += section
     
-    return src
+    return src + final
     
 type_regex = '''([a-zA-Z0-9_\\]['",]+( *\\| *)?)+'''
 comment_regex = re.compile(r'^\s*#.*\r?\n', re.MULTILINE)
@@ -76,7 +81,7 @@ def remove_type_annos(source: str):
     return result
 
 def python_files(dir):
-    for (dirpath, dirnames, filenames) in os.walk(dir, topdown=False):
+    for (dirpath, dirnames, filenames) in os.walk(dir, topdown=True):
         for filename in filenames:
             if filename.endswith('.py'):
                 yield os.sep.join([dirpath, filename])

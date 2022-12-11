@@ -21,9 +21,9 @@ def parse_condition_with_left(tokens: TokenStream, left: Expression) -> Conditio
 
     right = parse_expression(tokens)
 
-    if conditional.name == "equal":
+    if conditional.type == "equal":
             return Equation(left, right)
-    elif conditional.name == "REPLACE_LATER_WHATEVER_MAI_CHOSES_FOR_SOMETHING_CONDITIONAL_TOKEN":
+    elif conditional.type == "REPLACE_LATER_WHATEVER_MAI_CHOSES_FOR_SOMETHING_CONDITIONAL_TOKEN":
         # TODO! implement for all conditional operators
         pass
     

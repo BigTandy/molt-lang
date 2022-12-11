@@ -5,10 +5,10 @@ from parser.parsing.parse_file import parse_file
 from parser.parsing.token_stream import TokenStream
 
 # If no path is specified, use current working directory
-if len(sys.argv) < 3:
+if len(sys.argv) < 2:
     fpath = os.getcwd()
 else:
-    fpath = sys.argv[2]
+    fpath = sys.argv[1]
 
 # If specified path does not exist, raise exception
 if not os.path.exists(fpath):
@@ -18,6 +18,9 @@ def run_file(path: str):
     """Open the file and run it"""
     with open(path, mode='r') as file:
         source_code = file.read()
+        
+        for tkn in lexer(source_code):
+            print(tkn.type)
 
         token_stream = TokenStream(lexer(source_code))
 

@@ -23,7 +23,7 @@ class EvaluationResult:
         if self.type == EvaluationResultType.FINITE_SET:
             return self.value
         else:
-            raise("Value is not a finite set")
+            raise(Exception("Value is not a finite set"))
             
     def get_infinite_set(self) -> Tuple[Variable,set[set[Condition]]]:
         """

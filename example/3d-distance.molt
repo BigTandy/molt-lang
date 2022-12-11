@@ -8,15 +8,15 @@ let Z = 3
 
 # Define the point (1,2,3) as P_A
 def P_A(n) = {
-    n = X : 1
-    n = Y : 2
+    n = X : 1,
+    n = Y : 2,
     n = Z : 3
 }
 
 # Define the point (542,6,0) as P_B
 def P_B(n) = {
-    n = X : 1
-    n = Y : 2
+    n = X : 1,
+    n = Y : 2,
     n = Z : 3
 }
 
