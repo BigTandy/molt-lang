@@ -1,9 +1,24 @@
 import os
 import re
 import ast
+import itertools
 
 
 def bundle(dir, entry = "main.py"):
+    concatenation = concat_py(dir, entry)
+    lines = concatenation.splitlines()
+    
+    imports = filter(lambda x: is_import(x), lines)
+    non_imports = filter(lambda x: not is_import(x), lines)
+    
+    return "\n".join(
+        itertools.chain(imports, "\n", non_imports)
+    )
+    
+def is_import(line: str):
+    return line.startswith("from ") or line.startswith("import ")
+    
+def concat_py(dir, entry):
     src = ""
     final = ""
     
@@ -19,14 +34,13 @@ def bundle(dir, entry = "main.py"):
     
 type_regex = '''([a-zA-Z0-9_\\]['",]+( *\\| *)?)+'''
 comment_regex = re.compile(r'^\s*#.*\r?\n', re.MULTILINE)
-import_regex = re.compile(r'^from parser.[a-zA-Z., _]+', re.MULTILINE)
+import_regex = re.compile(r'^from (molt[.]src[.])?parser.[a-zA-Z., _]+', re.MULTILINE)
 type_anno_regex = re.compile(
     r'([ \t]*def \w+\([^)]+\)) *(-> *' + type_regex + ')?', re.MULTILINE)
 param_type_anno_regex = re.compile(r': *' + type_regex)
 
 
 def replace_param_type_annos(def_line: str):
-    print(def_line, param_type_anno_regex.sub("", def_line))
     return param_type_anno_regex.sub("", def_line)
 
 def decomplicate(python_src: str):

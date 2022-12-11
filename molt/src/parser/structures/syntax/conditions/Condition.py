@@ -1,4 +1,4 @@
-from parser.structures.running.EvaluationVariables import EvaluationVariables
+from molt.src.parser.structures.running.EvaluationVariables import EvaluationVariables
 
 
 class _defined_condition:

@@ -1,6 +1,6 @@
-from parser.parsing.parse_statement import parse_statement
-from parser.parsing.token_stream import TokenStream
-from parser.structures.syntax.MoltFile import MoltFile
+from molt.src.parser.parsing.parse_statement import parse_statement
+from molt.src.parser.parsing.token_stream import TokenStream
+from molt.src.parser.structures.syntax.MoltFile import MoltFile
 
 def parse_file(tokens: TokenStream) -> MoltFile:
     statements = []

@@ -1,8 +1,8 @@
 import sys
 import os
-from parser.lexer import lexer
-from parser.parsing.parse_file import parse_file
-from parser.parsing.token_stream import TokenStream
+from molt.src.parser.lexer import lexer
+from molt.src.parser.parsing.parse_file import parse_file
+from molt.src.parser.parsing.token_stream import TokenStream
 
 # If no path is specified, use current working directory
 if len(sys.argv) < 2:
@@ -18,9 +18,6 @@ def run_file(path: str):
     """Open the file and run it"""
     with open(path, mode='r') as file:
         source_code = file.read()
-        
-        for tkn in lexer(source_code):
-            print(tkn.type)
 
         token_stream = TokenStream(lexer(source_code))
 

@@ -23,17 +23,17 @@
 
 from ast import Expression
 from typing import List, Tuple
-from parser.parsing.parse_condition import parse_condition, parse_condition_with_left
-from parser.parsing.parse_expression import parse_expression
-from parser.parsing.parse_utils import expect
-from parser.parsing.token_stream import TokenStream
-from parser.structures.syntax.conditions.Condition import Condition
-from parser.structures.syntax.conditions.Equation import Equation
-from parser.structures.syntax.expressions.PiecewiseNotation import PiecewiseNotation
-from parser.structures.syntax.expressions.base_literals.Variable import Variable
-from parser.structures.syntax.expressions.compound_literals.FiniteSet import FiniteSet
-from parser.structures.syntax.expressions.compound_literals.InfiniteSet import InfiniteSet
-from parser.structures.syntax.expressions.set_operations.Union import Union
+from molt.src.parser.parsing.parse_condition import parse_condition, parse_condition_with_left
+from molt.src.parser.parsing.parse_expression import parse_expression
+from molt.src.parser.parsing.parse_utils import expect
+from molt.src.parser.parsing.token_stream import TokenStream
+from molt.src.parser.structures.syntax.conditions.Condition import Condition
+from molt.src.parser.structures.syntax.conditions.Equation import Equation
+from molt.src.parser.structures.syntax.expressions.PiecewiseNotation import PiecewiseNotation
+from molt.src.parser.structures.syntax.expressions.base_literals.Variable import Variable
+from molt.src.parser.structures.syntax.expressions.compound_literals.FiniteSet import FiniteSet
+from molt.src.parser.structures.syntax.expressions.compound_literals.InfiniteSet import InfiniteSet
+from molt.src.parser.structures.syntax.expressions.set_operations.Union import Union
 
 
 def parse_function_body(tokens: TokenStream) -> Expression:
@@ -108,8 +108,6 @@ def parse_rest_of_finite_set(tokens: TokenStream, first: Expression) -> Expressi
 def parse_the_rest_of_piecewise(tokens: TokenStream, cond: Condition) -> PiecewiseNotation:
     # the next token MUST (by precondition) be a colon. just get rid of it :)
     tokens.pop()
-    
-    print("hi i am piecewise")
     
     branches: List[Tuple[Condition,Expression]] = [(cond, parse_expression(tokens))]
     

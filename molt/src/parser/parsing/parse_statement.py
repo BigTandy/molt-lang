@@ -1,12 +1,12 @@
-from parser.parsing.parse_expression import parse_expression
-from parser.parsing.parse_function_body import parse_function_body
-from parser.parsing.parse_utils import expect
-from parser.parsing.token_stream import TokenStream
-from parser.structures.Token import Token
-from parser.structures.syntax.expressions.base_literals.Variable import Variable
-from parser.structures.syntax.expressions.function_operations.Composition import Composition
-from parser.structures.syntax.statements.molt_statements.EvalStatement import EvalStatement
-from parser.structures.syntax.statements.molt_statements.LetStatement import LetStatement
+from molt.src.parser.parsing.parse_expression import parse_expression
+from molt.src.parser.parsing.parse_function_body import parse_function_body
+from molt.src.parser.parsing.parse_utils import expect
+from molt.src.parser.parsing.token_stream import TokenStream
+from molt.src.parser.structures.Token import Token
+from molt.src.parser.structures.syntax.expressions.base_literals.Variable import Variable
+from molt.src.parser.structures.syntax.expressions.function_operations.Composition import Composition
+from molt.src.parser.structures.syntax.statements.molt_statements.EvalStatement import EvalStatement
+from molt.src.parser.structures.syntax.statements.molt_statements.LetStatement import LetStatement
 
 def parse_statement(tokens: TokenStream):
     next_token = tokens.peek()

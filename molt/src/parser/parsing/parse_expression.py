@@ -1,20 +1,20 @@
-from parser.structures.syntax.expressions.base_literals.Number import Number
-from parser.parsing.parse_function_body import parse_function_body_after_curly
-from parser.parsing.parse_utils import expect
-from parser.parsing.token_stream import TokenStream
-from parser.structures.syntax.expressions.Expression import Expression
-from parser.structures.syntax.expressions.base_literals.Variable import Variable
-from parser.structures.syntax.expressions.number_operations.Subtraction import Subtraction
-from parser.structures.syntax.expressions.set_operations.Complement import Complement
-from parser.structures.syntax.expressions.number_operations.negation import Negation
-from parser.structures.syntax.expressions.number_operations.Addition import Addition
-from parser.structures.syntax.expressions.number_operations.Multiplication import Multiplication
-from parser.structures.syntax.expressions.number_operations.Division import Division
-from parser.structures.syntax.expressions.number_operations.Exponentiation import Exponentiation
-from parser.structures.syntax.expressions.number_operations.Modulo import Modulo
-from parser.structures.syntax.expressions.set_operations.Union import Union
-from parser.structures.syntax.expressions.set_operations.Intersection import Intersection
-from parser.structures.syntax.expressions.function_operations.Application import Application
+from molt.src.parser.structures.syntax.expressions.base_literals.Number import Number
+from molt.src.parser.parsing.parse_function_body import parse_function_body_after_curly
+from molt.src.parser.parsing.parse_utils import expect
+from molt.src.parser.parsing.token_stream import TokenStream
+from molt.src.parser.structures.syntax.expressions.Expression import Expression
+from molt.src.parser.structures.syntax.expressions.base_literals.Variable import Variable
+from molt.src.parser.structures.syntax.expressions.number_operations.Subtraction import Subtraction
+from molt.src.parser.structures.syntax.expressions.set_operations.Complement import Complement
+from molt.src.parser.structures.syntax.expressions.number_operations.negation import Negation
+from molt.src.parser.structures.syntax.expressions.number_operations.Addition import Addition
+from molt.src.parser.structures.syntax.expressions.number_operations.Multiplication import Multiplication
+from molt.src.parser.structures.syntax.expressions.number_operations.Division import Division
+from molt.src.parser.structures.syntax.expressions.number_operations.Exponentiation import Exponentiation
+from molt.src.parser.structures.syntax.expressions.number_operations.Modulo import Modulo
+from molt.src.parser.structures.syntax.expressions.set_operations.Union import Union
+from molt.src.parser.structures.syntax.expressions.set_operations.Intersection import Intersection
+from molt.src.parser.structures.syntax.expressions.function_operations.Application import Application
 
 
 # oh my god thank you SO MUCH to bob nystrom. hero. thank you. if he had a

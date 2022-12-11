@@ -1,7 +1,7 @@
-from parser.structures.running.EvaluationResult import EvaluationResult, EvaluationResultType
-from parser.structures.syntax.conditions.Equation import Equation
-from parser.structures.syntax.expressions.Expression import ExpressionForResult
-from parser.structures.syntax.expressions.base_literals.Variable import Variable
+from molt.src.parser.structures.running.EvaluationResult import EvaluationResult, EvaluationResultType
+from molt.src.parser.structures.syntax.conditions.Equation import Equation
+from molt.src.parser.structures.syntax.expressions.Expression import ExpressionForResult
+from molt.src.parser.structures.syntax.expressions.base_literals.Variable import Variable
 
 
 def finite_to_infinite(finite: EvaluationResult) -> EvaluationResult:

@@ -1,4 +1,4 @@
-from parser.structures.running.EvaluationResult import EvaluationResult, EvaluationResultType
+from molt.src.parser.structures.running.EvaluationResult import EvaluationResult, EvaluationResultType
 
 
 class EvaluationVariables:

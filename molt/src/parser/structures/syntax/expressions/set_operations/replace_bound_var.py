@@ -1,6 +1,6 @@
-from parser.structures.running.EvaluationResult import EvaluationResult, EvaluationResultType
-from parser.structures.syntax.conditions.Condition import Condition
-from parser.structures.syntax.expressions.base_literals.Variable import Variable
+from molt.src.parser.structures.running.EvaluationResult import EvaluationResult, EvaluationResultType
+from molt.src.parser.structures.syntax.conditions.Condition import Condition
+from molt.src.parser.structures.syntax.expressions.base_literals.Variable import Variable
 
 
 def replace_bound_variable(infinite_set: EvaluationResult, new_var_name: str) -> EvaluationResult:

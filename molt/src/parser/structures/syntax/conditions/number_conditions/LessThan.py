@@ -1,6 +1,6 @@
 
-from parser.structures.syntax.conditions.Condition import Condition
-from parser.structures.syntax.expressions.Expression import Expression
+from molt.src.parser.structures.syntax.conditions.Condition import Condition
+from molt.src.parser.structures.syntax.expressions.Expression import Expression
 
 
 class LessThan(Condition):

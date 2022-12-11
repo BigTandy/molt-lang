@@ -1,8 +1,8 @@
-from parser.structures.running.EvaluationResult import EvaluationResult, EvaluationResultType
-from parser.structures.running.EvaluationVariables import EvaluationVariables
-from parser.structures.syntax.expressions.Expression import Expression
-from parser.structures.syntax.expressions.set_operations.finite_to_infinite import finite_to_infinite
-from parser.structures.syntax.expressions.set_operations.replace_bound_var import replace_bound_variable
+from molt.src.parser.structures.running.EvaluationResult import EvaluationResult, EvaluationResultType
+from molt.src.parser.structures.running.EvaluationVariables import EvaluationVariables
+from molt.src.parser.structures.syntax.expressions.Expression import Expression
+from molt.src.parser.structures.syntax.expressions.set_operations.finite_to_infinite import finite_to_infinite
+from molt.src.parser.structures.syntax.expressions.set_operations.replace_bound_var import replace_bound_variable
 
 
 class Union(Expression):

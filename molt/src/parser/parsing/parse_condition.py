@@ -1,9 +1,9 @@
-from parser.parsing.parse_expression import parse_expression
-from parser.parsing.parse_utils import expect
-from parser.parsing.token_stream import TokenStream
-from parser.structures.syntax.conditions.Condition import Condition
-from parser.structures.syntax.conditions.Equation import Equation
-from parser.structures.syntax.expressions.Expression import Expression
+from molt.src.parser.parsing.parse_expression import parse_expression
+from molt.src.parser.parsing.parse_utils import expect
+from molt.src.parser.parsing.token_stream import TokenStream
+from molt.src.parser.structures.syntax.conditions.Condition import Condition
+from molt.src.parser.structures.syntax.conditions.Equation import Equation
+from molt.src.parser.structures.syntax.expressions.Expression import Expression
 
 
 def parse_condition(tokens: TokenStream):

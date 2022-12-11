@@ -1,5 +1,5 @@
-from parser.structures.running.EvaluationVariables import EvaluationVariables
-from parser.structures.syntax.statements.Statement import Statement
+from molt.src.parser.structures.running.EvaluationVariables import EvaluationVariables
+from molt.src.parser.structures.syntax.statements.Statement import Statement
 
 
 class MoltFile:

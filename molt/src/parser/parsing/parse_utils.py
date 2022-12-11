@@ -1,6 +1,6 @@
 from time import strftime
-from parser.parsing.token_stream import TokenStream
-from parser.structures.Token import Token
+from molt.src.parser.parsing.token_stream import TokenStream
+from molt.src.parser.structures.Token import Token
 
 def expect(token_stream: TokenStream, expected_name: str | tuple[str], error_message = "Expected a {expected}, but got a {got}") -> Token:
     token = token_stream.pop()

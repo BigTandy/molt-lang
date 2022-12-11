@@ -1,8 +1,8 @@
-from parser.structures.running.EvaluationResult import EvaluationResult, EvaluationResultType
-from parser.structures.running.EvaluationVariables import EvaluationVariables
-from parser.structures.syntax.conditions.Condition import Condition
-from parser.structures.syntax.expressions.Expression import Expression
-from parser.structures.syntax.expressions.base_literals.Variable import Variable
+from molt.src.parser.structures.running.EvaluationResult import EvaluationResult, EvaluationResultType
+from molt.src.parser.structures.running.EvaluationVariables import EvaluationVariables
+from molt.src.parser.structures.syntax.conditions.Condition import Condition
+from molt.src.parser.structures.syntax.expressions.Expression import Expression
+from molt.src.parser.structures.syntax.expressions.base_literals.Variable import Variable
 
 
 class InfiniteSet(Expression):

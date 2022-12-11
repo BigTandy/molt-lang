@@ -2,7 +2,7 @@ import re
 variable_regex = re.compile('^[a-zA-Z_]+')
 number_regex = re.compile('^[0-9._]+')
 
-from parser.structures.Token import Token
+from molt.src.parser.structures.Token import Token
 def lexer(content: str) -> list[Token]:
     i = 0
     while i < len(content):

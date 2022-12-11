@@ -1,7 +1,7 @@
-from parser.structures.syntax.statements.Statement import Statement
-from parser.structures.running.EvaluationVariables import EvaluationVariables
-from parser.structures.syntax.expressions.Expression import Expression
-from parser.structures.syntax.expressions.base_literals.Variable import Variable
+from molt.src.parser.structures.syntax.statements.Statement import Statement
+from molt.src.parser.structures.running.EvaluationVariables import EvaluationVariables
+from molt.src.parser.structures.syntax.expressions.Expression import Expression
+from molt.src.parser.structures.syntax.expressions.base_literals.Variable import Variable
 
 
 class LetStatement(Statement):

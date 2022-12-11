@@ -1,9 +1,9 @@
 from enum import Enum
 from typing import Tuple
 
-from parser.structures.syntax.conditions.Condition import Condition
-from parser.structures.syntax.expressions.Expression import Expression
-from parser.structures.syntax.expressions.base_literals.Variable import Variable
+from molt.src.parser.structures.syntax.conditions.Condition import Condition
+from molt.src.parser.structures.syntax.expressions.Expression import Expression
+from molt.src.parser.structures.syntax.expressions.base_literals.Variable import Variable
 
 class EvaluationResultType(Enum):
     NUMBER = 1
