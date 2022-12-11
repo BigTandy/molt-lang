@@ -21,7 +21,6 @@
 # `f(x) = { y | y = x: 2 }` should be a piecewise (albeit a WEIRD one-- here's some more explanatory parens: `f(x) = { (y | y) = x: 2 }`)
 # `f(x) = { y | y }` should be a braced expression. or maybe a single-element set. wacky, huh?
 
-from ast import Expression
 from typing import List, Tuple
 from molt.src.parser.parsing.parse_condition import parse_condition, parse_condition_with_left
 from molt.src.parser.parsing.parse_expression import parse_expression
@@ -29,6 +28,7 @@ from molt.src.parser.parsing.parse_utils import expect
 from molt.src.parser.parsing.token_stream import TokenStream
 from molt.src.parser.structures.syntax.conditions.Condition import Condition
 from molt.src.parser.structures.syntax.conditions.Equation import Equation
+from molt.src.parser.structures.syntax.expressions.Expression import Expression
 from molt.src.parser.structures.syntax.expressions.PiecewiseNotation import PiecewiseNotation
 from molt.src.parser.structures.syntax.expressions.base_literals.Variable import Variable
 from molt.src.parser.structures.syntax.expressions.compound_literals.FiniteSet import FiniteSet
