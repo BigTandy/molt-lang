@@ -1,6 +1,6 @@
-from parser.structures.running.EvaluationResult import EvaluationResult, EvaluationResultType
-from parser.structures.running.EvaluationVariables import EvaluationVariables
-from parser.structures.syntax.expressions.Expression import Expression
+from molt.src.parser.structures.running.EvaluationResult import EvaluationResult, EvaluationResultType
+from molt.src.parser.structures.running.EvaluationVariables import EvaluationVariables
+from molt.src.parser.structures.syntax.expressions.Expression import Expression
 
 
 class Division(Expression):
@@ -23,7 +23,7 @@ class Division(Expression):
 
         # Divide the stored numbers and return the result
         if(left_res.type == EvaluationResultType.NUMBER and
-            right_res == EvaluationResultType.NUMBER):
+            right_res.type == EvaluationResultType.NUMBER):
             return EvaluationResult(
                 EvaluationResultType.NUMBER, left_res.value / right_res.value
             )

@@ -19,7 +19,7 @@ class Multiplication(Expression):
 
         # Multiply the stored numbers and return the result
         if(left_res.type == EvaluationResultType.NUMBER and
-            right_res == EvaluationResultType.NUMBER):
+            right_res.type == EvaluationResultType.NUMBER):
             return EvaluationResult(
                 EvaluationResultType.NUMBER, left_res.value * right_res.value
             )

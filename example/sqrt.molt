@@ -1,7 +1,7 @@
 # Calculate the square root of a given number using the Babylonian method
 
 def babylonian_sqrt(n, g, i) = {
-    i = 0: g
+    i <= 0: g,
            babylonian_sqrt( n, ( g + n/g) / 2 , i - 1)
 }
 

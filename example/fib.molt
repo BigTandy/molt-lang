@@ -4,4 +4,4 @@ def fib(n, a, b) = {
            fib(n - 1, b, a + b)
 }
 
-eval fib(34, 0, 1)
+eval fib(30, 0, 1)

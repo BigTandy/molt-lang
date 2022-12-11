@@ -117,6 +117,9 @@ def parse_the_rest_of_piecewise(tokens: TokenStream, cond: Condition) -> Piecewi
     while tokens.peek().type == "comma":
         tokens.pop()
         
+        if tokens.peek().type == "curly_cbracket":
+            raise Exception("Trailing comma in piecewise notation. There isn't a comma after the final piecewise term.")
+        
         next_expr = parse_expression(tokens)
         if tokens.peek().type == "curly_cbracket":
             branches.append( (Condition.TRUE, next_expr) )
@@ -149,6 +152,7 @@ def parse_the_rest_of_set_builder(tokens: TokenStream, cond: Condition) -> Infin
     
     # but first lol, crack open the condition and verify it's got a variable
     
+    union: Union = cond.left
     # if it WASN'T a bracketed expression, then we *had* to have parsed a set union.
     # complain if not.
     if (type(union) != Union):
@@ -156,7 +160,7 @@ def parse_the_rest_of_set_builder(tokens: TokenStream, cond: Condition) -> Infin
         Experienced an issue while parsing a set-builder expression: needed a `|`, but didn't get one. Sad!
         """))
     
-    union: Union = cond.left
+    
     
     initial_variable = union.left
     

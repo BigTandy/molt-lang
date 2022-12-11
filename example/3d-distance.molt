@@ -1,10 +1,14 @@
 
 # A 3-D implementation of the Pythagorean theorem
 
-let X = 1
-let Y = 2
-let Z = 3
+def babylonian_sqrt(n, g, i) = {
+    i <= 0: g,
+           babylonian_sqrt( n, ( g + n/g) / 2 , i - 1)
+}
 
+def sqrt(n) = {
+    n > 0 : babylonian_sqrt(n, n/2, 20)
+}
 
 # Define the point (1,2,3) as P_A
 def P_A(n) = {

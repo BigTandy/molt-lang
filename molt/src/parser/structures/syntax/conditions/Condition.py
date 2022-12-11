@@ -14,4 +14,4 @@ class Condition():
     TRUE: 'Condition' = _defined_condition(True)
        
     def check(self, vars: EvaluationVariables) -> bool:
-        pass
+        raise Exception("oops we didn't implement that part (:")

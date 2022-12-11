@@ -1,9 +1,9 @@
 # Calculate PI with the Leibniz formula
 
 def picalc(n) = {
-    n = 1     : 4
-    n % 2 = 0 : -4 / ( n * 2 - 1 ) + picalc(n - 1)
+    n = 1     : 4,
+    n % 2 = 0 : -4 / ( n * 2 - 1 ) + picalc(n - 1),
     n % 2 = 1 : 4 / ( n * 2 - 1 ) + picalc(n - 1)
 }
 
-eval picalc(40)
+eval picalc(100)

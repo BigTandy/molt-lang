@@ -1,6 +1,6 @@
-from parser.structures.running.EvaluationResult import EvaluationResult, EvaluationResultType
-from parser.structures.running.EvaluationVariables import EvaluationVariables
-from parser.structures.syntax.expressions.Expression import Expression
+from molt.src.parser.structures.running.EvaluationResult import EvaluationResult, EvaluationResultType
+from molt.src.parser.structures.running.EvaluationVariables import EvaluationVariables
+from molt.src.parser.structures.syntax.expressions.Expression import Expression
 
 
 class Exponentiation(Expression):
@@ -20,9 +20,9 @@ class Exponentiation(Expression):
 
         # Raise the first number to the power of the second and return the result
         if(left_res.type == EvaluationResultType.NUMBER and
-            right_res == EvaluationResultType.NUMBER):
+            right_res.type == EvaluationResultType.NUMBER):
             return EvaluationResult(
-                EvaluationResultType.NUMBER, left_res.value ^ right_res.value
+                EvaluationResultType.NUMBER, left_res.value ** right_res.value
             )
         
         # Raise exception if left_res or right_res are not numbers

@@ -59,7 +59,7 @@ register('minus', parseNegation)
 register('var', parseVariable)
 register('num', parseNumber)
 register('obracket', parseBracketContent)
-register('ocurlybracket', parseSet)
+register('curly_obracket', parseSet)
 
 
 def parseAddition(tokens, token, left):

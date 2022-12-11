@@ -1,4 +1,3 @@
-from time import strftime
 from molt.src.parser.parsing.token_stream import TokenStream
 from molt.src.parser.structures.Token import Token
 

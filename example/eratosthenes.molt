@@ -1,19 +1,19 @@
 let n = 500
 
 def eratosthenes_mark(potential_primes, p, i) = {
-    p = n     : potential_primes
+    p = n     : potential_primes,
     p * i < n : eratosthenes_mark(potential_primes - { p * i }, p, i + 1),
                 eratosthenes_mark(potential_primes, p + min_gt(potential_primes, p), 2)
 }
 
 def min_gt(set, i) = {
-    i + 1 in set : i + 1
-    i >= n       : n
+    i + 1 in set : i + 1,
+    i >= n       : n,
                    min_gt(set, i + 1)
 }
 
 eval eratosthenes_mark(
-    { x | x < n, x in N, n >= 2 },
+    { x | x < n, x in N, x >= 2 },
     2,
     2
     
