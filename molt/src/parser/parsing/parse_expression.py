@@ -51,7 +51,7 @@ def parseSet(tokens, token):
     return parse_function_body_after_curly(tokens, parse_singleton_set_as_expression=False)
 
 def register(Token, parselet):
-    prefixParselets.put(Token, parselet)
+    prefixParselets[Token] = parselet
 
 register('complement', parseComplement)
 register('minus', parseNegation)
@@ -94,15 +94,15 @@ def parseApplication(tokens, token, left):
     expect(tokens, 'cbracket')
     return Application(left, argument)
 
-infixParselets.put("minus", parseSubtraction)
-infixParselets.put("plus", parseAddition)
-infixParselets.put("multiply", parseMultiplication)
-infixParselets.put("divide", parseDivision)
-infixParselets.put("exponent", parseExponentiation)
-infixParselets.put("modulo", parseModulo)
-infixParselets.put("union", parseUnion)
-infixParselets.put("intersect", parseIntersection)
-infixParselets.put("obracket", parseApplication)
+infixParselets["minus"] = parseSubtraction
+infixParselets["plus"] = parseAddition
+infixParselets["multiply"] = parseMultiplication
+infixParselets["divide"] = parseDivision
+infixParselets["exponent"] = parseExponentiation
+infixParselets["modulo"] = parseModulo
+infixParselets["union"] = parseUnion
+infixParselets["intersect"] = parseIntersection
+infixParselets["obracket"] = parseApplication
 
 precedences = {
     'plus': 1,
