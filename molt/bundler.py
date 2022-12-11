@@ -9,12 +9,18 @@ def bundle(dir, entry = "main.py"):
     lines = concatenation.splitlines()
     
     imports = filter(lambda x: is_import(x), lines)
+    needed_imports = filter(isnt_typing_import, imports)
+    
     non_imports = filter(lambda x: not is_import(x), lines)
     
     return "\n".join(
-        itertools.chain(imports, "\n", non_imports)
+        itertools.chain(needed_imports, "\n", non_imports)
     )
-    
+
+
+def isnt_typing_import(line: str):
+    return not line.startswith("from typing")
+
 def is_import(line: str):
     return line.startswith("from ") or line.startswith("import ")
     

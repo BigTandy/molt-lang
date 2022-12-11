@@ -109,7 +109,7 @@ def parse_the_rest_of_piecewise(tokens: TokenStream, cond: Condition) -> Piecewi
     # the next token MUST (by precondition) be a colon. just get rid of it :)
     tokens.pop()
     
-    branches: List[Tuple[Condition,Expression]] = [(cond, parse_expression(tokens))]
+    branches = [(cond, parse_expression(tokens))]
     
     # ok ok. now. keep on going. it'll be a series of `condition colon expression`s, seperated by `comma`s.
     # the tricky part is the last could just be an `expression`, so you've gotta check for that
