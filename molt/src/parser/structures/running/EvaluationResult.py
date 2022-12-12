@@ -54,6 +54,8 @@ class EvaluationResult:
             
     def __repr__(self) -> str:
         if self.type == EvaluationResultType.NUMBER:
+            if self.value == int(self.value):
+                return str(int(self.value))
             return str(self.value)
         elif self.type == EvaluationResultType.SYMBOL:
             return str(self.value)
