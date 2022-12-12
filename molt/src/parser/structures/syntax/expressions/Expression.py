@@ -7,7 +7,7 @@ class Expression:
         pass
     
     def evaluate(self, vars: EvaluationVariables) -> EvaluationResult:
-        raise("oops didn't implement that")
+        raise ("oops didn't implement that")
         
     def contains_variable(self, var: str) -> bool:
         raise("oops didn't implement that")
