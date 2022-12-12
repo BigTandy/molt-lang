@@ -23,7 +23,7 @@ The syntax of our language will be inspired by Python as a starting point, with 
 - Currently, execution is handled with a recursive descent evaluation strategy. If we had a bytecode interpreter instead, we wouldn't be beholden to Python's limitations on stack size and TCO; our implementation could provide unbounded recursion.
 - Functions created with the function construction operator `=>` may only contain 1 bound variable. Currying (e.g. `a=>b=>a*b`) is possible, but we do not perform it automatically when evaluating `(a=>b=>a*b)(1,2)`. We should either expand the parser to allow `(a,b)=>a*b` or support easy currying.
 - Originally, a symbolic solving engine was intended as a core feature of Molt. Implementing this is a good idea for a future extension.
-- 
+- A broad refactor of the project to prevent the circular reference errors and make the bundler obsolete.
 
 ## Contributions
 
