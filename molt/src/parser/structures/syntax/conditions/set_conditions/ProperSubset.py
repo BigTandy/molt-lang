@@ -7,3 +7,6 @@ class ProperSubset(Condition):
     def __init__(self, left: Expression, right: Expression) -> None:
         self.left = left
         self.right = right
+
+    def __repr__(self) -> str:
+        return f"{self.left} <<< {self.right}"

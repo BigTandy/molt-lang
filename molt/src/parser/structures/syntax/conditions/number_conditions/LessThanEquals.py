@@ -14,3 +14,6 @@ class LessThanEquals(Condition):
         right_res = self.right.evaluate(vars)
 
         return left_res.value <= right_res.value
+
+    def __repr__(self) -> str:
+        return f"{self.left} <= {self.right}"

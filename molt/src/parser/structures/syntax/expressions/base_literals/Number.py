@@ -10,4 +10,4 @@ class Number(Expression):
         return EvaluationResult(EvaluationResultType.NUMBER, self.value)
 
     def __repr__(self) -> str:
-        return str(self.value)
+        return self.evaluate().__repr__()

@@ -10,3 +10,6 @@ class SetMembership(Condition):
 
     def check(self, vars: EvaluationVariables) -> bool:
         pass
+    
+    def __repr__(self) -> str:
+        return f"{self.left} in {self.right}"
