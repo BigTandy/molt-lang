@@ -7,16 +7,16 @@ class Expression:
         pass
     
     def evaluate(self, vars: EvaluationVariables) -> EvaluationResult:
-        pass
+        raise("oops didn't implement that")
         
     def contains_variable(self, var: str) -> bool:
-        pass
+        raise("oops didn't implement that")
     
     def rename_variable(self, old_var: str, new_var: str):
-        pass
+        raise("oops didn't implement that")
     
     def copy(self) -> 'Expression':
-        pass
+        raise("oops didn't implement that")
     
 class ExpressionForResult(Expression):
     def __init__(self, val: EvaluationResult) -> None:
