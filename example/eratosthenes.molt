@@ -1,3 +1,5 @@
+# DOES NOT WITH CURRENT SYNTAX
+
 let n = 500
 
 def eratosthenes_mark(potential_primes, p, i) = {

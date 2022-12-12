@@ -10,3 +10,4 @@ def sqrt(n) = {
 }
 
 eval sqrt(8)
+eval sqrt(4)
