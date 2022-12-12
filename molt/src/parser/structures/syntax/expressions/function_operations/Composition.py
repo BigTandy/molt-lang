@@ -12,3 +12,6 @@ class Composition(Expression):
     def evaluate(self, vars: EvaluationVariables) -> EvaluationResult:
         # TODO: replace `result`'s variable references with their values whenever it's NOT a bound variable. or recursive. maybe that is too much effort (especially for mutually recursive functions)
         return EvaluationResult(EvaluationResultType.FUNCTION, (self.result, self.bound_variables))
+        
+    def __repr__(self) -> str:
+        return self.evaluate().__repr()

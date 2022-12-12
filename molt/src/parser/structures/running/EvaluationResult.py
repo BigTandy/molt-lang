@@ -1,5 +1,6 @@
 from enum import Enum
 from typing import Tuple
+from molt.src.parser.structures.running.EvaluationVariables import EvaluationVariables
 
 from molt.src.parser.structures.syntax.conditions.Condition import Condition
 from molt.src.parser.structures.syntax.expressions.Expression import Expression

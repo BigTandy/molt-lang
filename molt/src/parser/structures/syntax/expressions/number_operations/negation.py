@@ -19,3 +19,6 @@ class Negation(Expression):
             )
         
         raise Exception(f'Could not negate {right_res.type}')
+        
+    def __repr__(self) -> str:
+        return f"-{self.right}"

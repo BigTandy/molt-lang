@@ -15,3 +15,20 @@ class PiecewiseNotation(Expression):
                 return body.evaluate(vars)
                 
         return EvaluationResult(EvaluationResultType.UNDEFINED_OUT_OF_DOMAIN, None)
+        
+    def __repr__(self) -> str:
+        return ',\n'.join(self.__get_branches_stringified())
+        
+    def __get_branches_stringified(self) -> list[str]:
+        branches_stringified = []
+
+        for branch in self.branches:
+            cond = "" if branch[0] == Condition.TRUE else f"{branch[0]}: "
+            
+            # if the piecewise notation is an ELSE, just extend the existing conditional.
+            if (cond == "" and type(branch[1]) == PiecewiseNotation):
+                branches_stringified.extend(
+                    branch[1].__get_branches_stringified())
+            else:
+                branches_stringified.append(f"{cond}{branch[1]}")
+        return branches_stringified

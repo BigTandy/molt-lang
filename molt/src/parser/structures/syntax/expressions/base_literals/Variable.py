@@ -8,3 +8,5 @@ class Variable(Expression):
 
     def evaluate(self, vars: EvaluationVariables) -> EvaluationResult:
         return vars.get(self.name)
+    def __repr__(self) -> str:
+        return self.name

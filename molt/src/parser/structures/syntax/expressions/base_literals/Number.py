@@ -8,3 +8,6 @@ class Number(Expression):
 
     def evaluate(self, vars: EvaluationVariables) -> EvaluationResult:
         return EvaluationResult(EvaluationResultType.NUMBER, self.value)
+
+    def __repr__(self) -> str:
+        return str(self.value)

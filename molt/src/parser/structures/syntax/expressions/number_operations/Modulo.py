@@ -26,3 +26,6 @@ class Modulo(Expression):
         
         # Raise exception if left_res or right_res are not numbers
         raise Exception(f'Could not divide {left_res.type} and {right_res.type}')
+        
+    def __repr__(self) -> str:
+        return f"{self.left} % {self.right}"
