@@ -9,6 +9,9 @@ def lexer(content: str) -> list[Token]:
         if content.startswith(',', i):
             yield Token('comma', ',')
             i += len(',')
+        elif content.startswith('=>', i):
+            yield Token('arrow', '=>')
+            i += len('=>')
         elif content.startswith('=', i):
             yield Token ('equal', '=')
             i += len('=')

@@ -1,9 +1,10 @@
 from molt.src.parser.structures.syntax.expressions.base_literals.Number import Number
-from molt.src.parser.parsing.parse_function_body import parse_function_body_after_curly
+from molt.src.parser.parsing.parse_function_body import parse_function_body, parse_function_body_after_curly
 from molt.src.parser.parsing.parse_utils import expect
 from molt.src.parser.parsing.token_stream import TokenStream
 from molt.src.parser.structures.syntax.expressions.Expression import Expression
 from molt.src.parser.structures.syntax.expressions.base_literals.Variable import Variable
+from molt.src.parser.structures.syntax.expressions.function_operations.Composition import Composition
 from molt.src.parser.structures.syntax.expressions.number_operations.Subtraction import Subtraction
 from molt.src.parser.structures.syntax.expressions.set_operations.Complement import Complement
 from molt.src.parser.structures.syntax.expressions.number_operations.negation import Negation
@@ -94,6 +95,13 @@ def parseApplication(tokens, token, left):
             tokens.pop()
     expect(tokens, 'cbracket')
     return Application(left, argument)
+    
+def parseComposition(tokens, token, left):
+    
+    if type(left) != Variable:
+        raise Exception(f"When creating a function, the left side of the arrow must be a bound variable. Got a {type(left)} instead.")
+    
+    return Composition([left], parse_function_body(tokens))
 
 infixParselets["minus"] = parseSubtraction
 infixParselets["plus"] = parseAddition
@@ -104,6 +112,7 @@ infixParselets["modulo"] = parseModulo
 infixParselets["union"] = parseUnion
 infixParselets["intersect"] = parseIntersection
 infixParselets["obracket"] = parseApplication
+infixParselets["arrow"] = parseComposition
 
 precedences = {
     'plus': 1,
@@ -114,8 +123,8 @@ precedences = {
     'modulo': 3,
     'union': 4,
     'intersect': 4,
-    'obracket': 5
-
+    'obracket': 5,
+    'arrow': 5
 }
 
 def get_precedence(tokens):

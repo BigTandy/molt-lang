@@ -13,10 +13,16 @@ def bundle(dir, entry = "main.py"):
     
     non_imports = filter(lambda x: not is_import(x), lines)
     
-    return "\n".join(
+    bundle_source = "\n".join(
         itertools.chain(needed_imports, "\n", non_imports)
     )
+    
+    return minify(bundle_source)
 
+empty_line_regex = re.compile('\\n\\s*\\n')
+
+def minify(source: str):
+    return empty_line_regex.sub("\n", source)
 
 def isnt_typing_import(line: str):
     return not line.startswith("from typing")

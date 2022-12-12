@@ -1,6 +1,9 @@
-f(z) = {
-    z in { x | f(x) == 0 }: 1,
-    0
-}
+let F = { x | x < 3, x % 4 == 0 }
 
-eval f(0)
+let H = ~F
+
+eval H
+
+# { X | x != 0 } 
+
+let G = F & { x | x > 9 }

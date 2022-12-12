@@ -3,139 +3,138 @@
 # THIS PROGRAM USES _UNSTANDARD SYNTAX_
 
 # WIP WIP WIP WIP WIP
-let halt = 0
-let plus = 1
-let minus = 2
-let loop_start = 3
-let loop_end = 4
-let move_right = 5
-let move_left = 6
 
 
 
-def bf_loop(P, p_i, S, s_i, L, l_d) = {
-    P(p_i) =       halt : S #halt and return the result function
-    P(p_i) =       plus : bf_loop( #add 1 to the current state cell
-                            P, p_i + 1, 
-                            state_with_value(S, s_i, S(s_i) + 1, s_i), 
-                            s_i, L, l_d
-                          )
-    P(p_i) =      minus : bf_loop(P, p_i + 1, # subtract 1 to the current state cell
-                            state_with_value(S, s_i, S(s_i) - 1, s_i), 
-                            s_i, L, l_d
-                          )
-    P(p_i) =  move_left : bf_loop(P, p_i + 1, S, s_i - 1, L, l_d) #move left on the state tape
-    P(p_i) = move_right : bf_loop(P, p_i + 1, S, s_i + 1, L, l_d) #move right on the state tape
-    P(p_i) = loop_start : bf_loop(P, p_i + 1, S, s_i, state_with_value(L, l_d, s_i + 1), l_d + 1) #begin a loop
-    P(p_i) =   loop_end : bf_loop(P, L(l_d) + 1, S, s_i, L, l_d - 1) 
+def bf_loop(program, instr_pointer, tape, tape_cell, loop_stack, loop_stack_depth) = {
+    program(instr_pointer) =       halt : tape, #halt and return the result function
+    program(instr_pointer) =       plus : bf_loop( #add 1 to the current state cell
+                            program, instr_pointer + 1, 
+                            state_with_value(tape, tape_cell, tape(tape_cell) + 1), 
+                            tape_cell, loop_stack, loop_stack_depth
+                          ),
+    program(instr_pointer) =      minus : bf_loop(program, instr_pointer + 1, # subtract 1 to the current state cell
+                            state_with_value(tape, tape_cell, tape(tape_cell) - 1), 
+                            tape_cell, loop_stack, loop_stack_depth
+                          ),
+    program(instr_pointer) =  move_left : bf_loop(program, instr_pointer + 1, 
+                                                    tape, tape_cell - 1, 
+                                                    loop_stack, loop_stack_depth), #move left on the state tape
+    program(instr_pointer) = move_right : bf_loop(program, instr_pointer + 1,
+                                                tape, tape_cell + 1, 
+                                                loop_stack, loop_stack_depth), #move right on the state tape
+    program(instr_pointer) = loop_start : bf_loop(program, instr_pointer + 1, 
+                                                tape, tape_cell, 
+                                                state_with_value(loop_stack, loop_stack_depth, tape_cell + 1), 
+                                                loop_stack_depth + 1), #begin a loop
+    program(instr_pointer) =   loop_end : bf_loop(program, loop_stack(loop_stack_depth) + 1, 
+                                                tape, tape_cell, 
+                                                loop_stack, loop_stack_depth - 1) 
 }
 
-
-def state_with_value(S, s_i, vP) = {
+def state_with_value(tape, tape_cell, vP) = {
     (i) => {
-        i = s_i : vP
-        S(i)
+        i = tape_cell : vP,
+        tape(i)
     }
 }
 
-def mapping(n) = 0
-
 def program(i) = {
-    i =  0: plus
-    i =  1: plus
-    i =  2: plus
-    i =  3: plus
-    i =  4: plus
-    i =  5: plus
-    i =  6: plus
-    i =  7: plus
-    i =  8: loop_start
-    i =  9: move_right
-    i = 10: plus
-    i = 11: plus
-    i = 12: plus
-    i = 13: plus
-    i = 14: loop_start
-    i = 15: move_right
-    i = 16: plus
-    i = 17: plus
-    i = 18: move_right
-    i = 19: plus
-    i = 20: plus
-    i = 21: plus
-    i = 22: move_right
-    i = 23: plus
-    i = 24: plus
-    i = 25: plus
-    i = 26: move_right
-    i = 27: plus
-    i = 28: move_left
-    i = 29: move_left
-    i = 30: move_left
-    i = 31: move_left
-    i = 32: minus
-    i = 33: loop_end
-    i = 34: move_right
-    i = 35: plus
-    i = 36: move_right
-    i = 37: plus
-    i = 38: move_right
-    i = 39: minus
-    i = 40: move_right
-    i = 41: move_right
-    i = 42: plus
-    i = 43: loop_start
-    i = 44: move_left
-    i = 45: loop_end
-    i = 46: move_left
-    i = 47: minus
-    i = 48: loop_end
-    i = 49: move_right
-    i = 50: move_right
-    i = 51: move_right
-    i = 52: minus
-    i = 53: minus
-    i = 54: minus
-    i = 55: plus
-    i = 56: plus
-    i = 57: plus
-    i = 58: plus
-    i = 59: plus
-    i = 60: plus
-    i = 61: plus
-    i = 62: plus
-    i = 63: plus
-    i = 64: plus
-    i = 65: move_right
-    i = 66: move_right
-    i = 67: move_left
-    i = 68: minus
-    i = 69: move_left
-    i = 70: plus
-    i = 71: plus
-    i = 72: plus
-    i = 73: minus
-    i = 74: minus
-    i = 75: minus
-    i = 76: minus
-    i = 77: minus
-    i = 78: minus
-    i = 79: minus
-    i = 80: minus
-    i = 81: minus
-    i = 82: minus
-    i = 83: minus
-    i = 84: minus
-    i = 85: minus
-    i = 86: minus
-    i = 87: move_right
-    i = 88: move_right
-    i = 89: plus
-    i = 90: move_right
-    i = 91: plus
+    i =  0: plus,
+    i =  1: plus,
+    i =  2: plus,
+    i =  3: plus,
+    i =  4: plus,
+    i =  5: plus,
+    i =  6: plus,
+    i =  7: plus,
+    i =  8: loop_start,
+    i =  9: move_right,
+    i = 10: plus,
+    i = 11: plus,
+    i = 12: plus,
+    i = 13: plus,
+    i = 14: loop_start,
+    i = 15: move_right,
+    i = 16: plus,
+    i = 17: plus,
+    i = 18: move_right,
+    i = 19: plus,
+    i = 20: plus,
+    i = 21: plus,
+    i = 22: move_right,
+    i = 23: plus,
+    i = 24: plus,
+    i = 25: plus,
+    i = 26: move_right,
+    i = 27: plus,
+    i = 28: move_left,
+    i = 29: move_left,
+    i = 30: move_left,
+    i = 31: move_left,
+    i = 32: minus,
+    i = 33: loop_end,
+    i = 34: move_right,
+    i = 35: plus,
+    i = 36: move_right,
+    i = 37: plus,
+    i = 38: move_right,
+    i = 39: minus,
+    i = 40: move_right,
+    i = 41: move_right,
+    i = 42: plus,
+    i = 43: loop_start,
+    i = 44: move_left,
+    i = 45: loop_end,
+    i = 46: move_left,
+    i = 47: minus,
+    i = 48: loop_end,
+    i = 49: move_right,
+    i = 50: move_right,
+    i = 51: move_right,
+    i = 52: minus,
+    i = 53: minus,
+    i = 54: minus,
+    i = 55: plus,
+    i = 56: plus,
+    i = 57: plus,
+    i = 58: plus,
+    i = 59: plus,
+    i = 60: plus,
+    i = 61: plus,
+    i = 62: plus,
+    i = 63: plus,
+    i = 64: plus,
+    i = 65: move_right,
+    i = 66: move_right,
+    i = 67: move_left,
+    i = 68: minus,
+    i = 69: move_left,
+    i = 70: plus,
+    i = 71: plus,
+    i = 72: plus,
+    i = 73: minus,
+    i = 74: minus,
+    i = 75: minus,
+    i = 76: minus,
+    i = 77: minus,
+    i = 78: minus,
+    i = 79: minus,
+    i = 80: minus,
+    i = 81: minus,
+    i = 82: minus,
+    i = 83: minus,
+    i = 84: minus,
+    i = 85: minus,
+    i = 86: minus,
+    i = 87: move_right,
+    i = 88: move_right,
+    i = 89: plus,
+    i = 90: move_right,
+    i = 91: plus,
     i = 92: plus
 }
 
-eval bf_loop(program, 1, mapping, 1, mapping, 1)
+eval bf_loop(program, 1, n => 0, 1, n => 0, 1)
 
 

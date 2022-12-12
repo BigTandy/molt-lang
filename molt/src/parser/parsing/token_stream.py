@@ -1,5 +1,5 @@
 from typing import Iterator
-from parser.structures.Token import Token
+from molt.src.parser.structures.Token import Token
 
 
 class TokenStream:

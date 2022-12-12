@@ -14,7 +14,7 @@ def expect(token_stream: TokenStream, expected_name: str | tuple[str], error_mes
         
 def fmt_error_message(error_message, expected_name, token):
     try:
-        return format(error_message, 
+        return error_message.format( 
             expected = str(expected_name), 
             got=token.type,
             got_content = token.content
