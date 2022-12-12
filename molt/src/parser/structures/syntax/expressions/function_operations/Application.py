@@ -33,4 +33,4 @@ class Application(Expression):
         
         return function_expression.evaluate(evaluation_context)
     def __repr__(self) -> str:
-        return f"({self.function})({', '.join(x.__repr__() for x in self.arguments)})"
+        return f"{self.function}({', '.join(x.__repr__() for x in self.arguments)})"

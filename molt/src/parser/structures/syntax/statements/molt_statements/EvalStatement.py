@@ -1,3 +1,4 @@
+import sys
 from molt.src.parser.structures.syntax.statements.Statement import Statement
 from molt.src.parser.structures.running.EvaluationResult import EvaluationResultType
 from molt.src.parser.structures.running.EvaluationVariables import EvaluationVariables
@@ -11,4 +12,7 @@ class EvalStatement(Statement):
     def run(self, vars: EvaluationVariables):
         val = self.expression.evaluate(vars)
         
-        print(val)
+        if "--explain" in sys.argv:
+            print(f"{val}  # {self.expression}")
+        else:
+            print(val)

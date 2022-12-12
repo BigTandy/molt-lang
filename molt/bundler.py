@@ -3,6 +3,9 @@ import re
 import ast
 import itertools
 
+MAGIC = ["#!python3",
+         "# coding=utf8"]
+
 
 def bundle(dir, entry = "main.py"):
     concatenation = concat_py(dir, entry)
@@ -14,7 +17,7 @@ def bundle(dir, entry = "main.py"):
     non_imports = filter(lambda x: not is_import(x), lines)
     
     bundle_source = "\n".join(
-        itertools.chain(needed_imports, "\n", non_imports)
+        itertools.chain(MAGIC, needed_imports, "\n", non_imports)
     )
     
     return minify(bundle_source)
