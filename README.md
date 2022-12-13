@@ -6,27 +6,83 @@
 
 ## What is Molt?
 
-In this project, we will design a simple procedural programming language and implement a parser & interpreter for it. The language will be focused on the realm of mathematics, with specific language features for evaluating mathematical expressions. We will feature numbers and sets as first-class types. Importing of other files is not in the scope of the project at this time.
+Molt is a simple programming language. There are two versions of Molt: "Ideal Molt", which is a hybrid-procedural-logical programming language, and "Procedural Molt", which is a subset of Ideal Molt and a procedural programming language. This repo contains the specification for Ideal Molt and a Python implementation for Procedural Molt.
 
-The syntax of our language will be inspired by Python as a starting point, with some modifications to make parsing easier (e.g. the usage of curly brackets rather than significant whitespace). An attempt will be made to prioritize pure functions, with the majority of side effects being handled in top-level statements, rather than functions. Conditional logic will be handled by piecewise expressions, while looping may be accomplished by recursion; in this way, Turing-completeness is reached.
+Molt's syntax is inspired by Python as a starting point, with some modifications to make parsing easier (e.g. the usage of curly brackets rather than significant whitespace). Molt prioritizes pure functions and forbids side effects. Side effects are only produced by top-level statements; everything else is an expression. 
 
-## Usage
+Molt supports sets, functions, and numbers as first-class values. 
 
-## Program Design
+## Usage: Molt CLI
 
-### Structure
+After cloning the repository, run the module `molt` with Python 3. Molt takes 1 required argument on the command line: the name of a file to run.
 
-### Known Issues
+```console
+chlohal@laptop: ~/molt-lang $ python3 molt example/sqrt.molt
+2.82842712474619
+2
+```
 
-## Future Extensions
+If a directory is given, Molt will search it for a `main.molt` file. 
 
-- Currently, execution is handled with a recursive descent evaluation strategy. If we had a bytecode interpreter instead, we wouldn't be beholden to Python's limitations on stack size and TCO; our implementation could provide unbounded recursion.
-- Functions created with the function construction operator `=>` may only contain 1 bound variable. Currying (e.g. `a=>b=>a*b`) is possible, but we do not perform it automatically when evaluating `(a=>b=>a*b)(1,2)`. We should either expand the parser to allow `(a,b)=>a*b` or support easy currying.
-- Originally, a symbolic solving engine was intended as a core feature of Molt. Implementing this is a good idea for a future extension.
-- A broad refactor of the project to prevent the circular reference errors and make the bundler obsolete.
+```console
+chlohal@laptop: ~/molt-lang $ python3 molt example
+2.82842712474619  # sqrt(8)
+2  # sqrt(4)
+```
 
-## Contributions
+If no argument is given at all, then Molt will search the current directory.
 
-## References & Acknowledgments
+```console
+chlohal@laptop: ~/molt-lang $ python3 molt
+Exception: C:\Users\coleh\molt-lang is a directory and no file 'main.molt' found
+```
 
-- Thank you to Bob Nystrom for his [article on Pratt Parsing](http://journal.stuffwithstuff.com/2011/03/19/pratt-parsers-expression-parsing-made-easy/), which helped a *lot* in the implementation of our expression parser, and his book, [Crafting Interpreters](https://craftinginterpreters.com/), which is a wonderful book to help one to know *how* to make a language.
+### `--explain`
+
+Molt also supports the optional `--explain` argument, which may be given *after* the file to "explain" evaluations.
+
+```console
+chlohal@laptop: ~/molt-lang $ python3 molt example/sqrt.molt --explain
+2.82842712474619  # sqrt(8)
+2  # sqrt(4)
+```
+
+### Binary Usage
+
+On **supported platforms**, Molt may be installed as a command. It still depends on Python, but can be run without directly referencing Python.
+
+```console
+# Must run Molt with Python at least once.
+chlohal@laptop: ~/molt-lang $ python3 molt example 
+3
+# Installing
+chlohal@laptop: ~/molt-lang $ cp molt/molt ~/bin
+chlohal@laptop: ~/molt-lang $ molt example
+3
+```
+
+## Molt Language
+
+This section documents the Implemented Molt language. The specification for the superset language, in EBNF format, is in [spec.md](./spec.md). 
+
+Molt files may be named any legal file name, but **MUST** end with `.molt`. Molt files are composed of 0 or more statements. Statements **SHOULD** be separated by newlines. 
+
+Whitespace is entirely ignored in Molt.
+
+There are currently supported 3 statements:
+
+### `let` statement
+
+`let` statements define variables. A `let` statement is written as such: 
+
+```js
+let x = 3
+```
+
+and defined with the following format:
+
+```ebnf
+let ::= "let" variable "=" expression
+```
+
+`let` statements will evaluate their expression and assign
