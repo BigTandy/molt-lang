@@ -87,6 +87,25 @@ let ::= "let" variable "=" expression
 
 `let` statements will evaluate their expression and assign its result to the given variable.
 
+### `eval` statement
+
+`eval` statements evaluate expressions and output the result. An `eval` statement can be written as follows:
+
+```js
+eval 2 + 3
+
+let x = 3
+eval 2 + x
+```
+
+and is defined with the following format:
+
+```ebnf
+eval ::= ["eval"] expression
+```
+
+If `eval` is used with an undefined variable, it will return an error
+
 ### `def` statement
 
 A `def` statement will define a function, similar to Python. A simple `def` statement can be written as follows:
@@ -290,8 +309,8 @@ The lexer also throws away comments, so we don't have to worry about parsing the
 Looping through each token is the best way to 
 
 ### Known Issues
-
-
+- Infinite sets cause an error
+- 
 
 ## Future Extensions
 
