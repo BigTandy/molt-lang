@@ -49,7 +49,7 @@ user@computer: ~/molt-lang $ python3 molt example/sqrt.molt --explain
 
 ### Binary Usage
 
-On **supported platforms**, Molt may be installed as a command. It still depends on Python, but can be run without directly referencing Python.
+On **supported platforms** (must support shebangs & have ~/bin in $PATH), Molt may be installed as a command. It still depends on Python, but can be run without directly referencing Python.
 
 ```console
 # Must run Molt with Python at least once.
