@@ -112,7 +112,7 @@ def lexer(content: str) -> list[Token]:
             yield Token ('union', '\/')
             i += len('\/')
         elif content.startswith('∪', i):
-            yield Token ('union', '∩')
+            yield Token ('union', '∪')
             i += len('∪')
         elif content.startswith('~', i):
             yield Token ('complement', '~')
