@@ -290,7 +290,8 @@ The following is a description of all conditional operators:
 ### Structure
 
 ### Known Issues
-
+- Infinite sets cause an error
+- 
 ## Future Extensions
 
 - Currently, execution is handled with a recursive descent evaluation strategy. If we had a bytecode interpreter, we wouldn't be beholden to Python's limitations on stack size and TCO: our implementation could provide unbounded recursion.
