@@ -39,6 +39,15 @@ def lexer(content: str) -> list[Token]:
         elif content.startswith('*', i):
             yield Token ('multiply', '*')
             i += len('*')
+        elif content.startswith('×', i):
+            yield Token ('multiply', '×')
+            i += len('×')
+        elif content.startswith('⋅', i):
+            yield Token ('multiply', '⋅')
+            i += len('⋅')
+        elif content.startswith('✕', i):
+            yield Token ('multiply', '✕')
+            i += len('✕')
         elif content.startswith('!=', i):
             yield Token ('neq', '!=')
             i += len('!=')
@@ -48,6 +57,9 @@ def lexer(content: str) -> list[Token]:
         elif content.startswith('/', i):
             yield Token ('divide', '/')
             i += len('/')
+        elif content.startswith('÷', i):
+            yield Token ('divide', '÷')
+            i += len('÷')
         elif content.startswith('%', i):
             yield Token ('modulo', '%')
             i += len('%')

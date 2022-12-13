@@ -159,17 +159,16 @@ The following is a table of all operators implemented in Molt, sorted by precede
 
 All operators are left-associative, except for exponentiation (`^`) and the modulo operator (`%`), which are not associative at all (i.e. `3^5^7` is a syntax error). The rationale behind this is consistency: some languages have a left-associative exponentiation operator and some have a right-associative one. Rather than make a decision which would alienate a subset of developers, Molt encourages clarity by requiring `(3^5)^7` or `3^(5^7)`.
 
-| Operator | Name           | Supported Synonyms | Example                                         | Notes                                                                                                      |            |
-| -------- | -------------- | ------------------ | ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------- |
-| `+`      | Addition       |                    | `3 + 2` &rarr; `5`                              |                                                                                                            |            |
-| `-`      | Subtraction    |                    | `2 - 1` &rarr; `1`, `{2,1} - {1}` &rarr; `{2}`  | When given two numbers, is the subtraction operation. When given two sets, it is the difference operation. |            |
-| `*`      | Multiplication |                    | `3 * 2` &rarr; `6`                              |                                                                                                            |            |
-| `/`      | Division       |                    | `6 / 3` &rarr; `2`                              |                                                                                                            |            |
-| `%`      | Modulo         |                    | `10 % 3` &rarr; `1`, `(20 % 11) % 4` &rarr; `1` | Not associative, must use parenthesis for multiple operations.                                             |            |
-| `^`      | Exponentiation |                    | `3 ^ 2` &rarr; `9`, `(2 ^ 3) ^ 2` &rarr; `64`   | Not associative, must use parenthesis for multiple operations.                                             |            |
-| `&&`     | Intersection   | `&`, `/\`, `∩`     | `{1,2,3} && {3,4,5}` &rarr; `{3}`               |                                                                                                            |            |
-| `||`     | Union          | `|`, `\/`, `∪`     | `{1,2,3} || {3,4,5}` &rarr; `{1,2,3,4,5}`       |                                                                                                            |  |
-
+| Operator | Name           | Supported Synonyms | Example                                         | Notes                                                                                                      |
+| -------- | -------------- | ------------------ | ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `+`      | Addition       |                    | `3 + 2` &rarr; `5`                              |                                                                                                            |
+| `-`      | Subtraction    |                    | `2 - 1` &rarr; `1`, `{2,1} - {1}` &rarr; `{2}`  | When given two numbers, is the subtraction operation. When given two sets, it is the difference operation. |
+| `*`      | Multiplication | `×`, `⋅`, `✕`      | `3 * 2` &rarr; `6`, `3 ⋅ 2` &rarr; `6`          |                                                                                                            |
+| `/`      | Division       | `÷`                | `6 / 3` &rarr; `2`, `6 ÷ 3` &rarr; `2`          |                                                                                                            |
+| `%`      | Modulo         |                    | `10 % 3` &rarr; `1`, `(20 % 11) % 4` &rarr; `1` | Not associative, must use parenthesis for multiple operations.                                             |
+| `^`      | Exponentiation |                    | `3 ^ 2` &rarr; `9`, `(2 ^ 3) ^ 2` &rarr; `64`   | Not associative, must use parenthesis for multiple operations.                                             |
+| `&&`     | Intersection   | `&`, `/\`, `∩`     | `{1,2,3} && {3,4,5}` &rarr; `{3}`               |                                                                                                            |
+| `||`     | Union          | `|`, `\/`, `∪`     | `{1,2,3} || {3,4,5}` &rarr; `{1,2,3,4,5}`       |                                                                                                            |
 ### Values
 
 Molt's implemented subset supports 3 types of values.
