@@ -280,7 +280,10 @@ The following is a description of all conditional operators:
 | `>=`     | Greater or Equal To |                    |                                                                                                      |
 | `!=`     | Not Equals          | `/=`               |                                                                                                      |
 | `in`     | Set Membership      |                    | The right side of the `in` operator **must** be a set                                                |
-|          |                     |                    |                                                                                                      |
+| `<<=`    | Subset              | `⊆`                |                                                                                                      |
+| `<<<`     | Proper Subset       | `⊂`                |                                                                                                      |
+| `>>=`    | Superset            | `⊇`                |                                                                                                      |
+| `>>>`     | Proper Superset     | `⊃`                |                                                                                                      |
 
 ## Program Design
 
