@@ -73,19 +73,38 @@ There are currently supported 3 statements:
 
 ### `let` statement
 
-`let` statements define variables. A `let` statement is written as such: 
+`let` statements define variables. A `let` statement is written as follows: 
 
 ```js
 let x = 3
 ```
 
-and defined with the following format:
+and is defined with the following format:
 
 ```ebnf
 let ::= "let" variable "=" expression
 ```
 
 `let` statements will evaluate their expression and assign its result to the given variable.
+
+### `eval` statement
+
+`eval` statements evaluate expressions. An `eval` statement can be written as follows:
+
+```js
+eval 2 + 3
+
+let x = 3
+eval 2 + x
+```
+
+and is defined with the following format:
+
+```ebnf
+eval ::= ["eval"] expression
+```
+
+If `eval` is used with an undefined variable, it will return an error
 
 ### `def` statement
 
