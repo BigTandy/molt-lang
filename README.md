@@ -253,14 +253,18 @@ The following is a description of all conditional operators:
 
 | Operator | Name                | Supported Synonyms | Notes                                                                                                |
 | -------- | ------------------- | ------------------ | ---------------------------------------------------------------------------------------------------- |
-| `==`     | Equality            | `=`                | Unlike most languages, `2 = 2` is the same as `2 == 2`. This facilitates easier use for mathematics. |
+| `=`      | Equality            | `==`               | Unlike most languages, `2 = 2` is the same as `2 == 2`. This facilitates easier use for mathematics. |
 | `<`      | Less Than           |                    |                                                                                                      |
 | `<=`     | Less or Equal To    |                    |                                                                                                      |
 | `>`      | Greater Than        |                    |                                                                                                      |
 | `>=`     | Greater or Equal To |                    |                                                                                                      |
 | `!=`     | Not Equals          | `/=`               |                                                                                                      |
-| `in`     | Set Membership      |                    | The right side of the `in` operator **must** be a set                                                |
-|          |                     |                    |                                                                                                      |
+| `in`     | Set Membership      |                    | The right side of the `in` operator **must** be a set.                                               |
+| `<<=`    | Subset              | `⊆`                |                                                                                                      |
+| `<<`     | Proper Subset       | `⊂`                |                                                                                                      |
+| `>>=`    | Superset            | `⊇`                |                                                                                                      |
+| `>>`     | Proper Superset     | `⊃`                |                                                                                                      |
+
 
 ## Program Design
 
