@@ -1,7 +1,7 @@
 # Molt: a Math Oriented Language Tool
 
-[Chloe Halverson](https://github.com/chlohal)
-[Mai Le Vu](https://github.com/mai-Le-Vu)
+[Chloe Halverson](https://github.com/chlohal) -
+[Mai Le Vu](https://github.com/mai-Le-Vu) -
 [William Titus](https://github.com/tippyToo)
 
 ## What is Molt?
