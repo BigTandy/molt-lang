@@ -89,7 +89,7 @@ let ::= "let" variable "=" expression
 
 ### `eval` statement
 
-`eval` statements evaluate expressions. An `eval` statement can be written as follows:
+`eval` statements evaluate expressions and output the result. An `eval` statement can be written as follows:
 
 ```js
 eval 2 + 3
