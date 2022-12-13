@@ -1,7 +1,7 @@
 # Molt: a Math Oriented Language Tool
 
-[Chloe Halverson](https://github.com/chlohal) -
-[Mai Le Vu](https://github.com/mai-Le-Vu) -
+[Chloe Halverson](https://github.com/chlohal)
+[Mai Le Vu](https://github.com/mai-Le-Vu)
 [William Titus](https://github.com/tippyToo)
 
 ## What is Molt?
@@ -17,7 +17,7 @@ Molt supports sets, functions, and numbers as first-class values.
 After cloning the repository, run the module `molt` with Python 3. Molt takes 1 required argument on the command line: the name of a file to run.
 
 ```console
-user@computer: ~/molt-lang $ python3 molt example/sqrt.molt
+chlohal@laptop: ~/molt-lang $ python3 molt example/sqrt.molt
 2.82842712474619
 2
 ```
@@ -25,7 +25,7 @@ user@computer: ~/molt-lang $ python3 molt example/sqrt.molt
 If a directory is given, Molt will search it for a `main.molt` file. 
 
 ```console
-user@computer: ~/molt-lang $ python3 molt example
+chlohal@laptop: ~/molt-lang $ python3 molt example
 2.82842712474619  # sqrt(8)
 2  # sqrt(4)
 ```
@@ -33,7 +33,7 @@ user@computer: ~/molt-lang $ python3 molt example
 If no argument is given at all, then Molt will search the current directory.
 
 ```console
-user@computer: ~/molt-lang $ python3 molt
+chlohal@laptop: ~/molt-lang $ python3 molt
 Exception: C:\Users\coleh\molt-lang is a directory and no file 'main.molt' found
 ```
 
@@ -42,22 +42,22 @@ Exception: C:\Users\coleh\molt-lang is a directory and no file 'main.molt' found
 Molt also supports the optional `--explain` argument, which may be given *after* the file to "explain" evaluations.
 
 ```console
-user@computer: ~/molt-lang $ python3 molt example/sqrt.molt --explain
+chlohal@laptop: ~/molt-lang $ python3 molt example/sqrt.molt --explain
 2.82842712474619  # sqrt(8)
 2  # sqrt(4)
 ```
 
 ### Binary Usage
 
-On **supported platforms** (must support shebangs & have ~/bin in $PATH), Molt may be installed as a command. It still depends on Python, but can be run without directly referencing Python.
+On **supported platforms**, Molt may be installed as a command. It still depends on Python, but can be run without directly referencing Python.
 
 ```console
 # Must run Molt with Python at least once.
-user@computer: ~/molt-lang $ python3 molt example 
+chlohal@laptop: ~/molt-lang $ python3 molt example 
 3
 # Installing
-user@computer: ~/molt-lang $ cp molt/molt ~/bin
-user@computer: ~/molt-lang $ molt example
+chlohal@laptop: ~/molt-lang $ cp molt/molt ~/bin
+chlohal@laptop: ~/molt-lang $ molt example
 3
 ```
 
@@ -73,38 +73,19 @@ There are currently supported 3 statements:
 
 ### `let` statement
 
-`let` statements define variables. A `let` statement is written as follows: 
+`let` statements define variables. A `let` statement is written as such: 
 
 ```js
 let x = 3
 ```
 
-and is defined with the following format:
+and defined with the following format:
 
 ```ebnf
 let ::= "let" variable "=" expression
 ```
 
 `let` statements will evaluate their expression and assign its result to the given variable.
-
-### `eval` statement
-
-`eval` statements evaluate expressions. An `eval` statement can be written as follows:
-
-```js
-eval 2 + 3
-
-let x = 3
-eval 2 + x
-```
-
-and is defined with the following format:
-
-```ebnf
-eval ::= ["eval"] expression
-```
-
-If `eval` is used with an undefined variable, it will return an error
 
 ### `def` statement
 
@@ -178,16 +159,17 @@ The following is a table of all operators implemented in Molt, sorted by precede
 
 All operators are left-associative, except for exponentiation (`^`) and the modulo operator (`%`), which are not associative at all (i.e. `3^5^7` is a syntax error). The rationale behind this is consistency: some languages have a left-associative exponentiation operator and some have a right-associative one. Rather than make a decision which would alienate a subset of developers, Molt encourages clarity by requiring `(3^5)^7` or `3^(5^7)`.
 
-| Operator | Name           | Supported Synonyms | Example                                         | Notes                                                                                                      |
-| -------- | -------------- | ------------------ | ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `+`      | Addition       |                    | `3 + 2` &rarr; `5`                              |                                                                                                            |
-| `-`      | Subtraction    |                    | `2 - 1` &rarr; `1`, `{2,1} - {1}` &rarr; `{2}`  | When given two numbers, is the subtraction operation. When given two sets, it is the difference operation. |
-| `*`      | Multiplication | `×`, `⋅`, `✕`      | `3 * 2` &rarr; `6`, `3 ⋅ 2` &rarr; `6`          |                                                                                                            |
-| `/`      | Division       | `÷`                | `6 / 3` &rarr; `2`, `6 ÷ 3` &rarr; `2`          |                                                                                                            |
-| `%`      | Modulo         |                    | `10 % 3` &rarr; `1`, `(20 % 11) % 4` &rarr; `1` | Not associative, must use parenthesis for multiple operations.                                             |
-| `^`      | Exponentiation |                    | `3 ^ 2` &rarr; `9`, `(2 ^ 3) ^ 2` &rarr; `64`   | Not associative, must use parenthesis for multiple operations.                                             |
-| `&&`     | Intersection   | `&`, `/\`, `∩`     | `{1,2,3} && {3,4,5}` &rarr; `{3}`               |                                                                                                            |
-| `\|\|`   | Union          | `\|`, `\/`, `∪`    | `{1,2,3} \|\| {3,4,5}` &rarr; `{1,2,3,4,5}`     |                                                                                                            |
+| Operator | Name           | Supported Synonyms | Example                                         | Notes                                                                                                      |            |
+| -------- | -------------- | ------------------ | ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------- |
+| `+`      | Addition       |                    | `3 + 2` &rarr; `5`                              |                                                                                                            |            |
+| `-`      | Subtraction    |                    | `2 - 1` &rarr; `1`, `{2,1} - {1}` &rarr; `{2}`  | When given two numbers, is the subtraction operation. When given two sets, it is the difference operation. |            |
+| `*`      | Multiplication |                    | `3 * 2` &rarr; `6`                              |                                                                                                            |            |
+| `/`      | Division       |                    | `6 / 3` &rarr; `2`                              |                                                                                                            |            |
+| `%`      | Modulo         |                    | `10 % 3` &rarr; `1`, `(20 % 11) % 4` &rarr; `1` | Not associative, must use parenthesis for multiple operations.                                             |            |
+| `^`      | Exponentiation |                    | `3 ^ 2` &rarr; `9`, `(2 ^ 3) ^ 2` &rarr; `64`   | Not associative, must use parenthesis for multiple operations.                                             |            |
+| `&&`     | Intersection   | `&`, `/\`, `∩`     | `{1,2,3} && {3,4,5}` &rarr; `{3}`               |                                                                                                            |            |
+| `||`     | Union          | `|`, `\/`, `∪`     | `{1,2,3} || {3,4,5}` &rarr; `{1,2,3,4,5}`       |                                                                                                            |  |
+
 ### Values
 
 Molt's implemented subset supports 3 types of values.
@@ -272,24 +254,44 @@ The following is a description of all conditional operators:
 
 | Operator | Name                | Supported Synonyms | Notes                                                                                                |
 | -------- | ------------------- | ------------------ | ---------------------------------------------------------------------------------------------------- |
-| `=`      | Equality            | `==`               | Unlike most languages, `2 = 2` is the same as `2 == 2`. This facilitates easier use for mathematics. |
+| `==`     | Equality            | `=`                | Unlike most languages, `2 = 2` is the same as `2 == 2`. This facilitates easier use for mathematics. |
 | `<`      | Less Than           |                    |                                                                                                      |
 | `<=`     | Less or Equal To    |                    |                                                                                                      |
 | `>`      | Greater Than        |                    |                                                                                                      |
 | `>=`     | Greater or Equal To |                    |                                                                                                      |
 | `!=`     | Not Equals          | `/=`               |                                                                                                      |
-| `in`     | Set Membership      |                    | The right side of the `in` operator **must** be a set.                                               |
-| `<<=`    | Subset              | `⊆`                |                                                                                                      |
-| `<<`     | Proper Subset       | `⊂`                |                                                                                                      |
-| `>>=`    | Superset            | `⊇`                |                                                                                                      |
-| `>>`     | Proper Superset     | `⊃`                |                                                                                                      |
-
+| `in`     | Set Membership      |                    | The right side of the `in` operator **must** be a set                                                |
+|          |                     |                    |                                                                                                      |
 
 ## Program Design
 
 ### Structure
 
+The Molt interpreter follows this structure:
+
+```mermaid
+flowchart TD    
+	File -- Code --> Lexer -- Tokens --> Stream --> Parser -- Abstract Syntax Tree --> Evaluation
+
+```
+
+First, a file is read. This file gets passed to the lexer.
+
+#### Lexer
+
+With Molt code, `3 == 3` is the same as `3 = 3`. `let x = 2` is the same as `let x=2`. Therefore, we want to provide a layer of abstraction and make it easier to reason about the file's content.
+
+The lexer serves this purpose: it goes through the file, splitting the text into meaningful "tokens" and assigning each token a name. `==` and `=` both have the name `equals`, so they will have the same purpose. 
+
+The lexer also throws away comments, so we don't have to worry about parsing them later on.
+
+#### Token Stream
+
+Looping through each token is the best way to 
+
 ### Known Issues
+
+
 
 ## Future Extensions
 
