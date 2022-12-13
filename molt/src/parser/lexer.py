@@ -66,6 +66,9 @@ def lexer(content: str) -> list[Token]:
         elif content.startswith('⊃', i):
             yield Token ('psupset', '⊃')
             i += len('⊃')
+        elif content.startswith('pea soup', i):
+            yield Token ('psupset', 'pea soup')
+            i += len('pea soup')
         elif content.startswith('<<=', i):
             yield Token ('subset', '<<=')
             i += len('<<=')
