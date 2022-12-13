@@ -171,6 +171,80 @@ All operators are left-associative, except for exponentiation (`^`) and the modu
 | `||`     | Union          | `|`, `\/`, `∪`     | `{1,2,3} || {3,4,5}` &rarr; `{1,2,3,4,5}`       |                                                                                                            |
 ### Values
 
+Molt's implemented subset supports 3 types of values.
+
+#### Numbers 
+
+Numbers are the most basic type of value. A number may be written as such:
+
+```python
+-3
+-2.0
+-26.3425
+```
+
+Exponential notation (e.g. `2e5`) is not supported: instead, users are advised to use `2 * 10^5`.
+
+#### Symbols
+
+When an unbound variable is evaluated, it yields a symbol. Symbols are a special data type which symbolizes a name. **Symbols may only be compared by equality.**
+
+```python
+def f(x) = {
+	x < 0: left
+	x = 0: center
+	x > 0: right
+}
+
+eval f(-2) # prints 'left'
+```
+
+Support for symbols allows Molt to implicitly support enums and lifts responsibility from the user. For example, when defining a function, the user may want to use special sentinel values to change the behaviour. Instead of requiring them to define each sentinel as a different variable (e.g. `let left = -1 let center = 0 let right = 1`), symbols make the task frictionless.
+
+#### Finite Sets
+
+A finite set is written as such:
+
+```python
+let finite_set = { 1, 2, 3 } # the set that contains 1, 2, and 3
+```
+
+#### Functions
+
+A function expression may be written like so:
+
+```python
+x => 3 
+# Piecewise is valid
+x => {
+    x > 2: 1,
+    9
+}
+```
+
+Even functions defined with `def` are function values. The code `def d(x) = 2` is *exactly equivalent* to the code `let d = x => 2`. The only difference is that function expressions may not have more than one argument.
+
+Because functions are first-class values, they may be used to store data. The following code approximates a dictionary in Molt.
+
+```python
+# Returns a new dictionary with the new key/value pair.
+# Molt forbids side effects, so returning a new dictionary is
+# the best way to implement the structure!
+def put(dictionary, key, val) = (
+	get_key => {
+		get_key = key: val,
+		dictionary(get_key)
+	}
+)
+
+def get(dictionary, key) = dictionary(key)
+
+def dict(default) = (
+	get_key => default
+)
+```
+
+
 ### Conditions
 
 
