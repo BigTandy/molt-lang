@@ -45,9 +45,13 @@ user@computer: ~/molt-lang $ python3 molt example/sqrt.molt --explain
 2  # sqrt(4)
 ```
 
-### Binary Usage
+### Installation & Standalone Usage
 
-On **supported platforms**, Molt may be installed as a command. It still depends on Python, but can be run without directly referencing Python.
+> **Warning**
+> Molt is primarily intended for use through Python. 
+> Installation is a beta feature. It may not work properly on all devices.
+
+On **supported platforms**, Molt may be installed as a command. It still depends on Python *being installed*, but can be run without directly referencing Python.
 
 ```console
 # Must run Molt with Python at least once.
