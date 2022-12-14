@@ -187,7 +187,7 @@ All operators are left-associative, except for exponentiation (`^`) and the modu
 | `%`      | Modulo         |                    | `10 % 3` &rarr; `1`, `(20 % 11) % 4` &rarr; `1` | Not associative, must use parenthesis for multiple operations.                                             |            |
 | `^`      | Exponentiation |                    | `3 ^ 2` &rarr; `9`, `(2 ^ 3) ^ 2` &rarr; `64`   | Not associative, must use parenthesis for multiple operations.                                             |            |
 | `&&`     | Intersection   | `&`, `/\`, `∩`     | `{1,2,3} && {3,4,5}` &rarr; `{3}`               |                                                                                                            |            |
-| `\|\|`     | Union          | `\|`, `\/`, `∪`     | `{1,2,3} \|\| {3,4,5}` &rarr; `{1,2,3,4,5}`       |                                                                                                            |  |
+| `\|\|`   | Union          | `\|`, `\/`, `∪`    | `{1,2,3} \|\| {3,4,5}` &rarr; `{1,2,3,4,5}`     |                                                                                                            |  |
 
 ### Values
 
