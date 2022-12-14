@@ -301,7 +301,7 @@ First, a file is read. This file gets passed to the lexer.
 
 #### Lexer
 
-With Molt code, `3 == 3` is the same as `3 = 3`. `let x = 2` is the same as `let x=2`. Therefore, we want to provide a layer of abstraction and make it easier to reason about the file's content.
+With Molt code, `3 == 3` is the same as `3 = 3`. `let x = 2` is the same as `let x=2`. Therefore, we want to provide a layer of abstraction to make understanding it easier.
 
 The lexer serves this purpose: it goes through the file, splitting the text into meaningful "tokens" and assigning each token a name. `==` and `=` both have the name `equals`, so they will have the same purpose. 
 
@@ -309,11 +309,46 @@ The lexer also throws away comments, so we don't have to worry about parsing the
 
 #### Token Stream
 
-Looping through each token is the best way to 
+Looping through each token is the best way to analyse the file, but we don't want to have one big `for` loop. That would be inelegant and awkward to code. Instead, we created a `TokenStream` data structure, which has the methods `peek()` and `pop()`.
+
+Popping takes the next token from the list, while peeking only *looks* at the next token, keeping the current position in the list. Since the `TokenStream` can peek at the next token, but can't peek further, we say it has 1 token of lookahead and that ours is an `LL(1)` parser.
+
+#### Parser
+
+The parser's job is to use the TokenStream to produce an Abstract Syntax Tree for the evaluator. In order to minimise complications, we split the parser's responsibilities into several files.
+
+The Statement Parser handles the parsing of each statement. Based on the first token, it decides what type of statement the function is, and it delegates to specific parsers based on that type.
+
+The Condition Parser handles the parsing of conditions. This is one of our more simple parsers, and only serves to create a logical separation from the expression parser.
+
+The Function Body Parser is an odd parser. It's rather complicated in order to distinguish between `def f(x) = { 3 }` (a simple expression in optional brackets), `def f(x) = { 3, 2, 1 }` (a finite set), and `def f(x) = { 3=x: 2, 0 }` (a piecewise function). This distinction was planned for-- in fact, that's partially why conditions aren't expressions in Molt-- but it's still non-trivial.
+
+The Expression Parser is one of the most complicated parsers. It must parse expressions like `3 + 2 * 8` successfully, keeping in mind associativity and precedence. To do that, it follows a technique called "Pratt parsing", where each operator is handled by a separate function and the main parser only serves to connect these pieces of logic together. Precedence is also handled seperately. This separation of concerns lets us easily manipulate the form of expressions in Molt.
+
+The expression parser is also designed to prioritize left-associative operators and infix operators.
+
+#### Abstract Syntax Tree
+
+An Abstract Syntax Tree (AST) is a model of how the program looks logically. For example, a tree could have a "root node" which contains a list of "statement nodes", each of which contain information on their contents.
+
+We made each type of node its own class, and gave each type its own file. This practice made our code very well-structured, but it also contributed 78% of our Python files!
+
+#### Evaluator
+
+After an AST is produced, then our Molt interpreter has a view of the logical structure of the program. Using this, it can evaluate the program.
+
+We chose to link the evaluation to the AST in a concrete way: each AST node class has a method (either `run`, `evaluate`, or `check`, which corresponds to statements, expressions, and conditions, respectively) that "does" that AST node.
+
+That made our code easy to reason about, at the cost of some performance.
 
 ### Known Issues
-- Infinite sets cause an error
-- 
+
+- Infinite sets are supported by the parser, but cause an error when evaluated.
+- Because of the degree of type annotations, Python complains of circular imports.
+	- We don't actually *use* anything in a circular manner, but type annotations require imports regardless. Currently, we fix this by bundling all python files into a single file at runtime, which then gets ran with `exec()`. The bundled result is saved so that it may be used as a standalone file for subsequent runs.
+- In some rare contexts, the `==` condition causes errors. This issue is intermittent.
+- Since Python doesn't support unbounded recursion, then looping (e.g. with `def f(x) = { x > 0 : f(x-1), 3 } eval f(300)`) will fail if the loop goes too high.
+- Exponentiation is left-associative, in violation of the specification.
 
 ## Future Extensions
 
