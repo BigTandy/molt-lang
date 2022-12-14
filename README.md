@@ -271,7 +271,7 @@ The following is a description of all conditional operators:
 
 | Operator | Name                | Supported Synonyms | Notes                                                                                                |
 | -------- | ------------------- | ------------------ | ---------------------------------------------------------------------------------------------------- |
-| `==`     | Equality            | `=`                | Unlike most languages, `2 = 2` is the same as `2 == 2`. This facilitates easier use for mathematics. |
+| `=`      | Equality            | `==`               | Unlike most languages, `2 = 2` is the same as `2 == 2`. This facilitates easier use for mathematics. |
 | `<`      | Less Than           |                    |                                                                                                      |
 | `<=`     | Less or Equal To    |                    |                                                                                                      |
 | `>`      | Greater Than        |                    |                                                                                                      |
