@@ -1,7 +1,7 @@
 # Molt: a Math Oriented Language Tool
 
-[Chloe Halverson](https://github.com/chlohal)
-[Mai Le Vu](https://github.com/mai-Le-Vu)
+[Chloe Halverson](https://github.com/chlohal) -
+[Mai Le Vu](https://github.com/mai-Le-Vu) -
 [William Titus](https://github.com/tippyToo)
 
 ## What is Molt?
@@ -17,7 +17,7 @@ Molt supports sets, functions, and numbers as first-class values.
 After cloning the repository, run the module `molt` with Python 3. Molt takes 1 required argument on the command line: the name of a file to run.
 
 ```console
-chlohal@laptop: ~/molt-lang $ python3 molt example/sqrt.molt
+user@computer: ~/molt-lang $ python3 molt example/sqrt.molt
 2.82842712474619
 2
 ```
@@ -25,7 +25,7 @@ chlohal@laptop: ~/molt-lang $ python3 molt example/sqrt.molt
 If a directory is given, Molt will search it for a `main.molt` file. 
 
 ```console
-chlohal@laptop: ~/molt-lang $ python3 molt example
+user@computer: ~/molt-lang $ python3 molt example
 2.82842712474619  # sqrt(8)
 2  # sqrt(4)
 ```
@@ -33,7 +33,7 @@ chlohal@laptop: ~/molt-lang $ python3 molt example
 If no argument is given at all, then Molt will search the current directory.
 
 ```console
-chlohal@laptop: ~/molt-lang $ python3 molt
+user@computer: ~/molt-lang $ python3 molt
 Exception: C:\Users\coleh\molt-lang is a directory and no file 'main.molt' found
 ```
 
@@ -42,7 +42,7 @@ Exception: C:\Users\coleh\molt-lang is a directory and no file 'main.molt' found
 Molt also supports the optional `--explain` argument, which may be given *after* the file to "explain" evaluations.
 
 ```console
-chlohal@laptop: ~/molt-lang $ python3 molt example/sqrt.molt --explain
+user@computer: ~/molt-lang $ python3 molt example/sqrt.molt --explain
 2.82842712474619  # sqrt(8)
 2  # sqrt(4)
 ```
@@ -53,11 +53,11 @@ On **supported platforms**, Molt may be installed as a command. It still depends
 
 ```console
 # Must run Molt with Python at least once.
-chlohal@laptop: ~/molt-lang $ python3 molt example 
+user@computer: ~/molt-lang $ python3 molt example 
 3
 # Installing
-chlohal@laptop: ~/molt-lang $ cp molt/molt ~/bin
-chlohal@laptop: ~/molt-lang $ molt example
+user@computer: ~/molt-lang $ cp molt/molt ~/bin
+user@computer: ~/molt-lang $ molt example
 3
 ```
 
@@ -187,7 +187,7 @@ All operators are left-associative, except for exponentiation (`^`) and the modu
 | `%`      | Modulo         |                    | `10 % 3` &rarr; `1`, `(20 % 11) % 4` &rarr; `1` | Not associative, must use parenthesis for multiple operations.                                             |            |
 | `^`      | Exponentiation |                    | `3 ^ 2` &rarr; `9`, `(2 ^ 3) ^ 2` &rarr; `64`   | Not associative, must use parenthesis for multiple operations.                                             |            |
 | `&&`     | Intersection   | `&`, `/\`, `∩`     | `{1,2,3} && {3,4,5}` &rarr; `{3}`               |                                                                                                            |            |
-| `||`     | Union          | `|`, `\/`, `∪`     | `{1,2,3} || {3,4,5}` &rarr; `{1,2,3,4,5}`       |                                                                                                            |  |
+| `\|\|`   | Union          | `\|`, `\/`, `∪`    | `{1,2,3} \|\| {3,4,5}` &rarr; `{1,2,3,4,5}`     |                                                                                                            |  |
 
 ### Values
 
@@ -281,9 +281,9 @@ The following is a description of all conditional operators:
 | `!=`     | Not Equals          | `/=`               |                                                                                                      |
 | `in`     | Set Membership      |                    | The right side of the `in` operator **must** be a set                                                |
 | `<<=`    | Subset              | `⊆`                |                                                                                                      |
-| `<<<`     | Proper Subset       | `⊂`                |                                                                                                      |
+| `<<`     | Proper Subset       | `<<<`, `⊂`         |                                                                                                      |
 | `>>=`    | Superset            | `⊇`                |                                                                                                      |
-| `>>>`     | Proper Superset     | `⊃`                |                                                                                                      |
+| `>>`     | Proper Superset     | `>>>`, `⊃`         |                                                                                                      |
 
 ## Program Design
 
