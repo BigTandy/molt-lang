@@ -281,9 +281,9 @@ The following is a description of all conditional operators:
 | `!=`     | Not Equals          | `/=`               |                                                                                                      |
 | `in`     | Set Membership      |                    | The right side of the `in` operator **must** be a set                                                |
 | `<<=`    | Subset              | `⊆`                |                                                                                                      |
-| `<<<`     | Proper Subset       | `⊂`                |                                                                                                      |
+| `<<`     | Proper Subset       | `<<<`, `⊂`         |                                                                                                      |
 | `>>=`    | Superset            | `⊇`                |                                                                                                      |
-| `>>>`     | Proper Superset     | `⊃`                |                                                                                                      |
+| `>>`     | Proper Superset     | `>>>`, `⊃`         |                                                                                                      |
 
 ## Program Design
 
