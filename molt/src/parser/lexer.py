@@ -71,10 +71,13 @@ def lexer(content: str) -> list[Token]:
             i += len('>>=')
         elif content.startswith('⊇', i):
             yield Token ('supset', '⊇')
-            i += len('>>=')
+            i += len('⊇')
         elif content.startswith('>>', i):
-            yield Token ('psupset', '>>=')
-            i += len('>>=')
+            yield Token ('psupset', '>>')
+            i += len('>>')
+        elif content.startswith('>>>', i):
+            yield Token ('psupset', '>>>')
+            i += len('>>>')
         elif content.startswith('⊃', i):
             yield Token ('psupset', '⊃')
             i += len('⊃')
@@ -86,13 +89,16 @@ def lexer(content: str) -> list[Token]:
             i += len('<<=')
         elif content.startswith('⊆', i):
             yield Token ('subset', '⊆')
-            i += len('<<=')
+            i += len('⊆')
         elif content.startswith('<<', i):
             yield Token ('psubset', '<<')
             i += len('<<')
+        elif content.startswith('<<<', i):
+            yield Token ('psubset', '<<<')
+            i += len('<<<')
         elif content.startswith('⊂', i):
             yield Token ('psubset', '⊂')
-            i += len('<<')
+            i += len('⊂')
         elif content.startswith('>=', i):
             yield Token ('gte', '>=')
             i += len('>=')
