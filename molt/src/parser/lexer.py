@@ -12,6 +12,9 @@ def lexer(content: str) -> list[Token]:
         elif content.startswith('=>', i):
             yield Token('arrow', '=>')
             i += len('=>')
+        elif content.startswith('==', i):
+            yield Token ('equal', '==')
+            i += len('==')
         elif content.startswith('=', i):
             yield Token ('equal', '=')
             i += len('=')
