@@ -198,9 +198,9 @@ Molt's implemented subset supports 3 types of values.
 Numbers are the most basic type of value. A number may be written as such:
 
 ```python
--3
+3
 -2.0
--26.3425
+26.3425
 ```
 
 Exponential notation (e.g. `2e5`) is not supported: instead, users are advised to use `2 * 10^5`.
