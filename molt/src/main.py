@@ -50,4 +50,5 @@ def main():
 try:
     main()
 except Exception as e:
-    print("Fatal error.\n" + ' '.join(e.args))
+    print("Fatal error\n" + ' '.join(e.args))
+    sys.exit(1)
