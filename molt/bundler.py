@@ -37,7 +37,7 @@ def concat_py(dir, entry):
     src = ""
     final = ""
     
-    for file in python_files(dir):
+    for file in sorted(python_files(dir)):
         with open(file) as file_handle:
             section = f"# {file}\n{decomplicate(file_handle.read())}\n\n"
             if file.endswith(entry):
