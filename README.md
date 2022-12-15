@@ -51,16 +51,14 @@ user@computer: ~/molt-lang $ python3 molt example/sqrt.molt --explain
 > Molt is primarily intended for use through Python. 
 > Installation is a beta feature. It may not work properly on all devices.
 
-On **supported platforms**, Molt may be installed as a command. It still depends on Python *being installed*, but can be run without directly referencing Python.
+Molt may be installed as a command. It still depends on Python *being installed*, but can be run without directly referencing Python.
 
 ```console
 # Must run Molt with Python at least once.
-user@computer: ~/molt-lang $ python3 molt example 
-3
-# Installing
-user@computer: ~/molt-lang $ cp molt/molt ~/bin
-user@computer: ~/molt-lang $ molt example
-3
+user@computer: ~/molt-lang $ python3 installer
+Bundling for installation...
+Installing...
+Done!
 ```
 
 ## Molt Language
