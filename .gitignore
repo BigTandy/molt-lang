@@ -2,3 +2,4 @@
 **.tmp
 molt/__bundle__.py
 molt/molt
+.DS_Store
