@@ -381,3 +381,5 @@ That made our code easy to reason about, at the cost of some performance.
 ## References & Acknowledgments
 
 - Thank you to Bob Nystrom for his [article on Pratt Parsing](http://journal.stuffwithstuff.com/2011/03/19/pratt-parsers-expression-parsing-made-easy/), which helped a *lot* in the implementation of our expression parser, and his book, [Crafting Interpreters](https://craftinginterpreters.com/) (which we didn't reference directly, but is a wonderful text to help with *how* to make a language).
+- Thanks to Phoebe for finding Molt on GitHub & helping with testing and bug-hunting
+- Thanks to @spookygirlwithukulele for helping with Linux testing
