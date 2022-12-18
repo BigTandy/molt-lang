@@ -24,7 +24,7 @@ def install(bundled_system):
 
 def make_bat_for(interpreter, file):
     return ("@echo off\n" +
-            f'"{interpreter}" "{file}"')
+            f'"{interpreter}" "{file}" %*')
 
 def write_executable(file, content):
     make_folder_if_not_exist(os.path.dirname(file))
