@@ -349,6 +349,7 @@ That made our code easy to reason about, at the cost of some performance.
 - In some rare contexts, the `==` condition causes errors. This issue is intermittent.
 - Since Python doesn't support unbounded recursion, then looping (e.g. with `def f(x) = { x > 0 : f(x-1), 3 } eval f(300)`) will fail if the loop goes too high.
 - Exponentiation is left-associative, in violation of the specification.
+- Some intermittent issues with Windows 11
 
 ## Future Extensions
 
