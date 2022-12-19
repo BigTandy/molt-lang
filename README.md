@@ -349,7 +349,7 @@ That made our code easy to reason about, at the cost of some performance.
 - In some rare contexts, the `==` condition causes errors. This issue is intermittent.
 - Since Python doesn't support unbounded recursion, then looping (e.g. with `def f(x) = { x > 0 : f(x-1), 3 } eval f(300)`) will fail if the loop goes too high.
 - Exponentiation is left-associative, in violation of the specification.
-- Some intermittent issues with Windows 11
+- Installation may require restart on Windows 11
 
 ## Future Extensions
 
@@ -381,5 +381,5 @@ That made our code easy to reason about, at the cost of some performance.
 ## References & Acknowledgments
 
 - Thank you to Bob Nystrom for his [article on Pratt Parsing](http://journal.stuffwithstuff.com/2011/03/19/pratt-parsers-expression-parsing-made-easy/), which helped a *lot* in the implementation of our expression parser, and his book, [Crafting Interpreters](https://craftinginterpreters.com/) (which we didn't reference directly, but is a wonderful text to help with *how* to make a language).
-- Thanks to Phoebe for finding Molt on GitHub & helping with testing and bug-hunting
+- Thanks to [Phoebe](github.com/bigTandy) for finding Molt on GitHub & helping with testing and bug-hunting
 - Thanks to @spookygirlwithukulele for helping with Linux testing
