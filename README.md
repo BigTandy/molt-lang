@@ -60,7 +60,7 @@ user@computer: ~/molt-lang $ molt example/hello.molt
 
 ## Molt Language
 
-This section documents the Implemented Molt language. The specification for the superset language, in EBNF format, is in [spec.md](./spec.md). 
+This section documents the Implemented Molt language. The specification for the superset language is in [spec.md](./spec.md). 
 
 Molt files may be named any legal file name, but **MUST** end with `.molt`. Molt files are composed of 0 or more statements. Statements **SHOULD** be separated by newlines. 
 
