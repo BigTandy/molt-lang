@@ -12,7 +12,7 @@ Molt supports sets, functions, and numbers as first-class values.
 
 ## Usage: Molt CLI
 
-After cloning the repository, run the module `molt` with Python 3. Molt takes 1 required argument on the command line: the name of a file to run.
+After cloning the repository (an, optionally, [installing](#installation)), run the module `molt` with Python 3. Molt takes 1 required argument on the command line: the name of a file to run.
 
 ```console
 user@computer: ~/molt-lang $ python3 molt example/sqrt.molt
@@ -45,20 +45,17 @@ user@computer: ~/molt-lang $ python3 molt example/sqrt.molt --explain
 2  # sqrt(4)
 ```
 
-### Installation & Standalone Usage
-
-> **Warning**
-> Molt is primarily intended for use through Python. 
-> Installation is a beta feature. It may not work properly on all devices.
+### Installation
 
 Molt may be installed as a command. It still depends on Python *being installed*, but can be run without directly referencing Python.
 
 ```console
-# Must run Molt with Python at least once.
 user@computer: ~/molt-lang $ python3 installer
 Bundling for installation...
 Installing...
 Done!
+user@computer: ~/molt-lang $ molt example/hello.molt
+0.2222222222222222
 ```
 
 ## Molt Language
